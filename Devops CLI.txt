@@ -1,0 +1,3673 @@
+03:19 PM 17-02-2024
+===========================================================================
+			Unix/Linux command
+===========================================================================
+	Linux is an open-source operating system kernel initially created by Linus Torvalds. It is the foundation for various Unix-like operating systems.
+
+===========================================================================
+Runlevel command
+===========================================================================
+	Runlevels define the state of the system, with each runlevel having a specific set of services. They range from 0 (halt) to 6 (reboot), with 3 commonly used for a multi-user command-line interface.
+
+Runlevel	Description
+0	System halt i.e., the system can be safely powered off with no activity.
+1	Single user mode.
+2	Multiple user mode with no NFS (network file system).
+3	Multiple user modes under the command line interface and not under the graphical user 	interface.
+4	User-definable.
+5	Multiple user mode under GUI (graphical user interface) and this is the standard runlevel for 	most of the LINUX-based systems.
+6	Reboot which is used to restart the system.
+
+Linux systemd targets VS runlevels 
+----------------------------------
+Runlevel 0 = poweroff.target (runlevel0.target) 
+Runlevel 1 = rescue.target (runlevel1.target) 
+Runlevel 2 = multi-user.target (runlevel2.target) 
+Runlevel 3 = multi-user.target (runlevel3.target) 
+Runlevel 4 = multi-user.target (runlevel4.target) 
+Runlevel 5 = graphical.target (runlevel5.target) 
+Runlevel 6 = reboot.target (runlevel6.target) 
+
+1 To the present working runlevel
+  runlevel
+
+2 To the Change runlevel
+  init <runlevel_number>
+
+3 To make set-default runlevel
+  systemctl set-default runlevel<number>.target
+OR
+  systemctl set-default multiuser.target
+
+===========================================================================
+Installation and up-gradation of different OS
+===========================================================================
+Debian Based Linux:
+===================
+Installation software management SUDO command
+=============================================
+$ sudo apt-get update		First, we need to update our repository
+$ sudo apt-get upgrade		Second, we need to upgrade our repository
+
+Syntax:
+-------
+	sudo apt-get [options] <software_name>
+	sudo apt-cache [options] <key_word>
+	
+options:
+--------
+  	install		:   	Install a software.
+	upgrade		:	Upgrade a packages.
+	remove or purge :	Remove a software.
+	search <key_word>:	Search software by a keyword.
+	
+
+Example:
+--------
+	$ sudo apt-get install python3
+	$ sudo apt-get update python3
+	$ sudo apt-get remove python3
+	$ sudo apt-get purge python3
+	$ sudo apt-cache search <key_word>
+
+additional Package management DPKG command
+==========================================
+Syntax:
+-------
+	dpkg [options] <package_name.deb>
+
+options:
+--------
+	-l | grep:	Check if a package is already installed.
+  	-i	: 	Install a package.
+	-r	:	Remove a package.
+	-ivh	:	Displaying the installing progress of packages.
+
+Example:
+--------
+	$ dpkg -l | grep python3
+	$ dpkg -i <package.deb>
+	$ dpkg -r <package .deb>
+	$ dpkg -ivh <package.deb> 			
+
+===========================================================================
+Red Hat Enterprise Linux
+========================
+Installation software management YUM command
+============================================
+$ yum -y update		First, we need to update our repository
+$ yum -y upgrade	Second, we need to upgrade our repository
+
+Syntax:
+-------
+	sudo yum [options] <software_name>
+
+options:
+--------
+  	install		: 	Install a software.
+	upgrade		:	Upgrade a packages.
+	remove or purge	:	Remove a software.
+
+Example:
+--------
+	$ sudo yum install python3
+	$ sudo yum update python3
+	$ sudo yum remove python3
+	$ sudo yum purge python3
+
+additional Packages using RPM and YUM command
+==============================================
+Syntax:
+-------
+	$ rpm [options] <package_name.deb>
+
+options:
+--------
+	-l | grep:	Check if a package is already installed.
+  	-i	: 	Install a package.
+  	-U	:	Upgrade a packages.
+	-r	:	Remove a package.
+	-ivh	:	Displaying the installing progress of packages.
+
+Example:
+--------
+	$ rpm -l | grep python3
+	$ rpm -i <package.rpm>
+	$ rpm -U <package .rpm>
+	$ rpm -ivh <package.rpm>
+
+===========================================================================
+Service Management command
+===========================================================================
+Syntax:
+-------
+	systemctl [options] <service_name>
+
+options:
+--------
+	status	:	Check if a service is running.
+  	start	: 	Start a service.
+  	stop	:	Stop a service.
+	restart	:	Restart a service.
+	is-enable:	Check autostart enable.
+	enable	:	Enable autostart.
+	disable	:	Disable autostart.
+	
+Example:
+--------
+	$ systemctl status python3
+	$ systemctl stop python3
+	$ systemctl is-enabled python3
+	$ systemctl restart python3
+	$ systemctl enable python3
+	$ systemctl disable python3
+
+===========================================================================
+File and Directory Command
+===========================================================================
+1 ls 				Display Files and Directory			
+2 ls -al			Display listing Formatted files and directory with hidden files		
+3 ls -lt			Sorting the Formatted listing by time modification		
+4 pwd				Show current working directory
+5 cd 				Change to home directory
+6 cd ..				Change to previous directory
+7 cd <dir_name>			Change directory to directory
+8 cat <file_name>		Displaying file contents
+9 more <file_name>		Output the contents of the file
+10 head <file_name>		Output the first 10 lines of the file
+11 tail <file_name>		Output the last 10 lines of the file
+12 tail -f <file_name>		Output the contents of file as it grows,starting with the last 10 lines
+13 touch <file_name>					Create or update file
+14 rm <file_name>					Deleting the file
+15 mkdir <dir_name>					Creating a directory
+16 rm -r <dir_name>					Deleting the directory
+17 rm -f <file_name>					Force to remove the file
+18 rm -rf <dir_name>					Force to remove the directory
+19 cp <source/file_name> <destination/filename>		Copy the contents of file1 to file2
+20 cp -r <source/dir_name> <destination/dir_name>	Copy dir1 to dir2;create dir2 if not present
+21 mv <source/file_name> <destination/filename>		Rename or move file1 to file2,if file2 is an existing directory
+22 echo [script write (option)] > <file_name>		To write any things throught terminal
+23 echo [script write (option)] >> <file_name>		To write next line throught terminal
+
+===========================================================================
+Types of Files:							Command to create the File
+===========================================================================
+1 Regular files (-): It contain programs, executable files and text files.	$ touch
+2 Directory files (d): It is shown in blue color. It contain list of files.	$ mkdir
+3 Special files
+     Block file (b)								$ fdisk
+     Character device file (c)							$ mknod
+     Named pipe file (p)							$ mkfifo
+     Symbolic link file (l)							$ ln
+     Socket file (s)								$ socket() system call
+
+===========================================================================
+Hard and Symbolic link command
+===========================================================================
+	Hard links directly reference the inode of the file, while symbolic links are pointers to the file’s path.
+
+Syntax:
+-------
+	ln [option] original_file.txt hard_link.txt or /path/to/target /path/to/symlink
+
+options:
+--------
+	-s	:	Symbolic link
+
+Example:
+--------
+	$ ln original_file.txt hard_link.txt
+	$ ln -s /home/user/documents/original.txt /home/user/documents/link_to_original.txt
+
+Notes: ln -i original_file.txt hard_link.txt	:	To verify the hard link
+
+===========================================================================
+File and Directory Permissions command
+===========================================================================
+	File permissions are core to the security model used by Linux systems. They determine who can access files and directories on a system and how.
+
+Syntax:
+-------
+	chmod [option] <file/dir_name>
+
+options:
+--------
+	u :	User/owner permissions.
+	g :	Group permissions.
+	o :	Other permissions.
+	+ :	Add permissions.
+	- :	Remove permissions.
+	= :	Set permissions explicitly.	
+	r :	read permissions (4).
+	w :	write permissions (2).
+	x :	execute permissions (1).
+	
+Example:
+--------
+	$ chmod +x myscript.sh
+	$ chmod 756 Folder
+	$ chmod u+r myscript.sh
+	$ chmod g-w myscript.sh
+	$ chmod o=x myscript.sh	
+
+Owner	Group	Other
+rwx	rwx	rwx
+421	421	421
+
+permission	111 = myscript.sh
+permission	756 = Folder
+
+d--x--x--x	myscript.sh	grants only execute permissions to the user,group,others of the file.
+-rwxr-xrw-	Folder		grants read, write, and execute permissions to the user,group,others of the file.
+
+===========================================================================
+Special Permissions SUID, SGID and Sticky bit command
+===========================================================================
+	Special permissions refer to file and directory permissions that go beyond the standard read, write, and execute permissions for the owner, group, and others.
+
+Syntax:
+-------
+	$ chmod [option]rwxrwxrwx <file/dir_name>
+
+options:
+--------
+	4 :	Set User ID (SUID).
+	2 :	Set Group ID (SGID).
+	1 :	Sticky bit.
+	
+Example:
+--------
+	$ chmod 4777 myscript.sh
+	$ chmod 2777 myscript.sh
+	$ chmod 1777 myscript.sh	
+	
+sets the default file permissions
+=================================
+Syntax:
+-------
+	$ umask [option] <file/dir_name>
+
+options:
+--------
+	0 :	read, write and execute
+	1 :	read and write
+	2 :	read and execute
+	3 :	read only
+	4 :	write and execute
+	5 :	write only
+	6 :	execute only
+	7 :	no permissions
+
+Example:
+--------
+	$ umask 0777 myscript.sh
+	$ umask 1777 myscript.sh
+	$ umask 2777 myscript.sh
+
+changes the owner of file/directory to the specified user
+=========================================================
+Syntax:
+-------
+	$ chown	username <file/dir_name>
+
+options:
+--------
+	arun :	regular (admin) username
+	root :	root username
+	other:	team or non-admin username
+
+Example:
+--------
+	$ chown	arun myscript.sh
+	$ chown	root myscript.sh
+	$ chown	abi myscript.sh
+	
+changes the group ownership of file/directory to the specified group
+====================================================================
+Syntax:
+-------
+	$ chgrp	groupname <file/dir_name>
+
+options:
+--------
+	Devloper group   :	regular (admin) username
+	Admin group :	root username
+	Devops group:	team or non-admin username
+	
+Example:
+--------
+	$ chgrp Devloper group myscript.sh
+
+changes the owner & group of file/directory at time
+===================================================	
+Syntax:
+-------
+	$ chgrp	username:groupname <file/dir_name>
+
+options:
+--------
+	arun :	regular (admin) username
+	root :	root username
+	other:	team or non-admin username
+	Devloper group   :	regular (admin) username
+	Admin group :	root username
+	Devops group:	team or non-admin username
+Example:
+--------
+	$ chown	arun:root myscript.sh
+
+===========================================================================
+File compression & achieving command
+===========================================================================
+1 tar cf file.tar <adding_file>		To Create tar named file.tar containing file
+2 tar xf file.tar			To Extract the files from file.tar
+3 tar czf file.tar.gz <adding_file>	To Create a tar with Gzip compression
+4 tar xzf file.tar.gz			To Extract a tar using Gzip
+5 tar cjf file.tar.bz2			To Create tar with Bzip2 compression
+6 tar xjf file.tar.bz2			To Extract a tar using Bzip2
+7 gzip <adding_file>			To Compresses file and renames it to file.gz
+8 gzip -d file.gz			To Decompresses file.gz back to file
+
+===========================================================================
+Process management command
+===========================================================================
+1 ps			To display the currently working processes
+2 top			To Display all running process
+3 kill <process_id>	To Kill the process with given processes id
+4 killall proc		To Kill all the process named proc
+5 pkill pattern	Will 	To kill all processes matching the pattern
+6 bg			To List stopped or background jobs,resume a stopped job in the background
+7 fg			To Brings the most recent job to foreground
+8 fg n			To Brings job n to the foreground		
+
+===========================================================================
+System Info command
+===========================================================================
+1 uname -a		To Show kernel information
+2 cal			To Show this month's calender
+3 uptime		To Show current uptime
+4 w			To Display who is on line
+5 whoami		To Who you are logged in as
+6 finger user		To Display information about user
+7 date			To Show the current date and time
+8 cat /proc/cpuinfo	To Display CPU information
+9 cat /proc/meminfo	To Display Memory information
+10 man <command>	To Show the manual for command
+11 df			To Show the disk usage
+12 du			To Show directory space usage
+13 free			To Show memory and swap usage
+14 whereis app		To Show possible locations of app
+15 which app		To Show which applications will be run by default
+16 lscpu		To Display CPU information.
+17 lspci		To List PCI devices.
+18 lsusb		To List USB devices.
+19 <command> --help 	To Show the information for command
+
+===========================================================================
+Searching and finding command
+===========================================================================
+1 grep pattern <file_name>	Search for pattern in file
+2 grep -r pattern <dir_name>	Search recursively for pattern in dir
+3 command | grep pattern	Search pattern in the output of a command
+4 locate <file_name>		Find all instances of file
+5 find . -name <file_name>	Searches in the current directory (represented by a period) and below it,for files and directories with 			names starting with filename				
+6 pgrep pattern			Searches for all the named processes , that matches with the pattern and, by default, returns their ID
+
+===========================================================================
+User administration and Group management command
+===========================================================================
+Create, modify, and delete user accounts
+----------------------------------------
+1 useradd <username>				To Create a user
+2 useradd -m <username>				To Create a user with home directories
+3 passwd <username>				To Setting the password for the user
+4 id <username>					To Get the ID of any username
+5 usermod -u <new_id> <username>		To Modify the user ID for a user
+6 usermod -g <new_group_id> <username>		To Modify the user ID for a user
+7 usermod -l <new_username> <old_username> 	To Modify the user login name
+8 usermod -d <new_home_dir_path> <username>	To Modify the home directory
+9 userdel -r <username>				To delete a user name
+
+Create, modify, and delete groups
+---------------------------------
+1 groupadd <group_name>				To Creating a secondary group
+2 gpasswd <group_name>				To Setting the password for the group
+3 groupmod -G <groupname> <username>		To Adding a user to an existing	group	
+4 groupmod -aG <groupname> <username>		To Add user to group without removing from existing group
+5 groupmod -M <username1> <username2>		To Add multiple users to a group at once
+6 gpasswd -d <username> <group_name>		To Deleting a user from a group
+7 groupdel <group_name>				To Delete a group
+
+===========================================================================
+cron command
+===========================================================================
+	cron and anacron are time-based job scheduler that runs on operating system.
+Cron runs the scheduled jobs at a very specific interval, but only if the system is running at that moment. 
+
+Syntax:
+-------
+	$ crontab [options]
+
+Options:
+--------
+	-l :		To View the pending cron job.
+	-r <job ID>:	To Remove the cron job.
+	-e :		To Edit the crontab file.
+
+Example:
+--------
+	$ crontab -r 0020
+	$ crontab -e
+	
+cron job scheduling
+-------------------
+Syntax:
+-------
+	* * * * * command_to_be_executed
+
+Options:
+--------
+	Minute (0-59)
+	Hour (0-23)
+	Day of month (1-31)
+	Month (1-12)
+	Day of week (0-6, where Sunday is 0)
+
+Example:
+--------
+	0 2 * * * would run the command at 2:00 AM every day.
+	30 7 * * 1-5 would run the command at 7:30 AM, Monday to Friday.
+
+===========================================================================
+anacron command
+===========================================================================
+It mainly constitutes of two important Files
+============================================
+	/etc/anacrontab : It contains specifications of job.
+	/var/spool/anacron : This directory is used by Anacron for storing timestamp files. 
+
+Syntax for two important Files:
+------------------------------
+	$ sudo nano /etc/anacrontab
+	$ cd /var/spool/anacron
+
+Syntax:
+-------
+	anacron [-s]  [-f]  [-n] [-d] [-q] [-t anacrontab] [-S spooldir] [job]
+	anacron [-S spooldir] -u [-t anacrontab] [job] …
+	anacron [-V|-h]
+	anacron -T [-t anacrontab]
+
+Options:
+--------
+	-f :	Used to force execution of the jobs, ignoring the timestamps.
+	-u :	Only update the timestamps of the jobs, to the current date, but don’t run anything.
+	-s : 	Serialize execution of jobs. Anacron will not start a new job before the previous one finished.
+	-n : 	Run jobs now.Ignore any delay.
+	-d : 	Don’t fork to the background. In this mode, Anacron will output informational messages to standard error, as well as to syslog. The output of jobs is mailed as usual.
+	-q : Suppress messages to standard error. Only applicable with -d.
+	-V (Use specified anacrontab) : 	Print version information and exit.
+	-h (Use specified anacrontab) : 	Print short usage message, and exit.
+	
+Example:
+--------
+	$ sudo anacron -d -f
+
+anacron job scheduling
+----------------------
+Syntax:
+-------
+	$ period delay job-identifier command
+	
+options:
+--------
+	Period	:	Time interval for running the job (in days).
+	Delay	:	The delay before the job runs after the system starts (in minutes).
+	Job-identifier: A unique identifier for the job.
+	Command: The command to be executed.
+	
+Example:
+--------
+	$ 7	15	myweeklyjob	/path/to/your/command
+
+Note:
+-----
+	You can add any script to etc/cron.daily or etc/cron.weekly or cron.monthly directory.but remember script should be sh not bash.
+
+===========================================================================
+at command
+===========================================================================
+	at commands schedule a one-time job.
+
+Syntax:
+-------
+	$ at	# Edit the at job.
+	$ at [options] timespec
+
+options:
+--------
+	-q queue:	To Specifies the job queue. By default, it’s set to a.
+	-f file	:	To Reads the job from the specified file.
+	-m	:	To Sends mail to the user after the job has been completed.
+	-l	:	To Lists the pending jobs.
+	-d job	:	To Deletes the specified job.
+	-V	:	To Prints version information.
+	-r <job_number> : To Remove the at job
+Example:
+--------
+	$ at 2:30pm
+	$ at -f myscript.sh 8:00am tomorrow
+
+
+===========================================================================
+Batch command
+===========================================================================
+	batch commands is similar to at command schedule a one-time job.
+
+Syntax:
+-------
+	$ batch [options] [at-job-id]
+
+options:
+--------
+  	-q queue: 	  To Specifies the job queue. By default, it’s set to b.
+	-f <script_file>: To Read the commands to be executed from the file.
+	-l:	       	  To Lists the user’s pending jobs.
+	-m: 		  For Sends mail to the user after the job has been completed.
+	-r <job_number>:  To Cancel the job whose ID is job_number. 
+
+Example:
+--------
+	$ Batch command_to_run
+	$ Batch -f myscript.sh
+
+=========================================================================== 
+patch Command
+===========================================================================
+	patch command is used for adding patch files to source code or text files. It takes input as a patch file and applies differences to original files. We use the diff command to get the difference. 
+
+Syntax:
+-------
+	$ Patch [options] [originalfile [patchfile]]
+	$ patch -pnum <patchfile> 
+
+Options:
+--------
+	-pnum or --strip=num [myfile.patch]:	To Specifies the number of leading slashes to strip from file names in the patch 		file.
+	< [myfile.patch] 		   :	To Applying the Patch File
+	-b < [myfile.patch] 		   :	To Take a Backup Before Applying Patch
+	-b -V numbered < [myfile.patch]	   : 	To Setting Backup File Version 
+	--dry-run < [myfile.patch] 	   :	To Validate Patch Files 
+	-R < [myfile.patch]		   :	To Reverse/Undo a Patch
+	-i patchfile or --input=patchfile  :	To Specifies the patch file to be applied.
+	-o outfile or --output=outfile	   :	To Specifies the name of the output file.
+
+Creating a Patch File Using diff : Source Code 
+-----------------------------------------------
+File 1:
+-------
+	The source code file I have created is named as myfile.c
+	
+Source Code File 2:
+-------------------	
+	Now, copy the content of myfile.c in the new_myfile.c, using: 	
+	$ cp myfile.c new_myfile.c 
+	Make some changes in the newly-created file:
+	
+Checking Difference: 
+--------------------
+	$ diff -u myfile.c new_myfile.c > myfile.patch
+	
+Applying the Patch File: 
+------------------------
+To apply patch, use: 
+	$ patch < myfile.patch 
+ 	Ensure that the patch file is in the directory where the source code file is placed. 
+
+Example:
+--------
+	$ patch –R < myfile.patch 
+	$ patch < file.patch
+
+===========================================================================
+Network Command
+===========================================================================
+Network File System (NFS)
+=========================
+	NFS stands for Network File System. It is a distributed file system protocol that allows a user on a client computer to access files over a network as if the files were stored locally on the client's machine. NFS enables sharing files and directories among multiple systems in a network.
+
+Install NFS Server:
+-------------------
+	$ sudo apt-get install nfs-kernel-server
+	
+Create a Directory:
+-------------------
+	$ mkdir /srv/nfs_share
+
+Config:
+-------
+	$ sudo nano /etc/exports
+
+Add a line like this to export the directory:
+---------------------------------------------
+	/srv/nfs_share   *(rw,sync,no_subtree_check)
+
+Restart NFS Service:
+--------------------
+	$ sudo systemctl restart nfs-kernel-server
+
+Configuring the NFS Client
+==========================
+Install NFS Client:
+-------------------
+	$ sudo apt-get install nfs-common
+	
+Mount the Shared Directory:
+---------------------------
+	$ udo mkdir /mnt/nfs_share
+	
+Now, mount the NFS share:
+-------------------------
+	$ sudo mount <NFS_SERVER_IP>:/srv/nfs_share /mnt/nfs_share
+Notes: Replace <NFS_SERVER_IP> with the IP address of your NFS server.
+
+Check if the NFS share is mounted successfully:
+-----------------------------------------------
+	$ df -h
+
+Automounting:
+-------------
+	To automatically mount the NFS share at boot, you can add an entry to /etc/fstab on the client:
+	
+Automounting the NFS share:
+---------------------------
+	<NFS_SERVER_IP>:/srv/nfs_share /mnt/nfs_share nfs defaults 0 0
+Again,Notes replace <NFS_SERVER_IP> with your server’s IP address.
+
+===========================================================================
+Shell Secure Host(SSH)
+======================
+	SSH is called as Secured Shell. It allows users to log into and interact with a remote machine over a network securely. This is same as telnet, but data is transferred in cipher text instead of plain text. so in current days it is more recommended.
+
+What is cipher text?
+--------------------	
+	Ciphertext is encrypted text transformed from plaintext using an encryption algorithm.
+	
+Remote Login:
+-------------
+	Connecting to a remote server securely.
+Syntax:
+-------
+	$ ssh username@hostname
+
+File Transfer:
+--------------
+	Securely copying files from local to remote machines using tools like scp (secure copy) or sftp (secure file transfer protocol).
+
+Syntax (scp):
+-------------
+	$ scp /path/to/local/file.txt username@remote_machine:/path/to/remote/destination
+	
+File Transfer:
+--------------
+	Securely copying files from remote machines to local using tools like scp (secure copy) or sftp (secure file transfer protocol).
+
+Syntax (scp):
+-------------
+	$ scp username@remote_machine:/path/to/remote/file.txt /path/to/local/destination
+	
+Tunneling and Port Forwarding:
+------------------------------
+	Creating secure tunnels for network services, like forwarding local ports to a remote machine.
+Syntax:
+-------
+	$ ssh -L local_port:remote_host:remote_port username@hostname
+
+X11 Forwarding:
+---------------
+	Running graphical applications on a remote server and displaying them locally.
+Syntax: 
+-------
+	$ ssh -X username@hostname
+
+Key-Based Authentication:
+-----------------------
+	$ ssh key-gen
+
+Key-Based Authentication share to remote server:
+------------------------------------------------
+	$ ssh -I /path/to/private-key username@hostname
+
+===========================================================================
+Samba
+=====
+	Samba is a free, open-source software suite that enables file and print services for Windows, Linux, and other operating systems in a network. It allows different operating systems to communicate and share resources seamlessly, facilitating file sharing, printer access, and other networking functionalities.
+
+Syntax: 
+-------
+	$ sudo apt-get install samba
+
+Configure smb.conf:
+-------------------
+	$ sudo nano /etc/samba/smb.conf
+
+Define a Shared Folder:
+-----------------------
+[shared_folder]
+
+    Path = /path/to/shared/folder
+
+    Writable = yes
+
+    Guest ok = yes
+
+Shared_folder: The name of the shared folder.
+
+Path: The path to the directory you want to share.
+
+Writable: Set to yes to allow write access.
+
+Guest ok: Set to yes to allow guest access without a password.
+
+Restart Samba Service:
+----------------------
+	$ sudo service smbd restart
+
+Create Samba User:
+------------------
+	Create a Samba user with the same username as a user on your Linux system.
+	$ sudo smbpasswd -a username
+
+Test the Setup:
+---------------
+	Access the shared folder from a Windows machine or another Linux machine with a Samba client. 
+	\\your-linux-hostname\shared_folder
+
+Additional Tips:
+================
+Security Considerations:
+------------------------
+	Adjust security settings in smb.conf based on your needs, considering user authentication and access controls.
+
+Firewall Configuration:
+-----------------------
+	If you have a firewall enabled, ensure that the necessary ports (e.g., 139, 445) are open for Samba communication.
+
+Advanced Configurations:
+------------------------
+	Explore advanced features like domain authentication, printer sharing, and integrating with external authentication systems.
+
+===========================================================================
+Aphace server:
+==============
+	The Apache HTTP Server, commonly referred to as Apache, is an open-source web server software. It plays a key role in serving web content on the internet. Apache is highly customizable and supports various features, including the ability to serve static and dynamic content, handle virtual hosting, and provide security through features like SSL/TLS. Many websites use Apache as their web server due to its reliability and extensive configuration options.
+
+Install Apache:
+---------------
+	$ sudo apt-get update && sudo apt-get install apache2
+	$ sudo yum install httpd
+
+Enable Apache to start on boot:
+-------------------------------
+	$ sudo systemctl enable apache2
+	$ sudo systemctl enable httpd
+
+Configure Firewall:
+-------------------
+	$ sudo ufw allow 80 (on Ubuntu/Debian)
+	$ sudo firewall-cmd –add-service=http –permanent && sudo firewall-cmd –reload
+
+Verify Installation:
+--------------------
+	Open a web browser and enter your server’s IP address. You should see the Apache default page.
+
+Optional: Configure Virtual Hosts:
+----------------------------------	
+	For hosting multiple websites on the same server.
+
+Optional: Secure with SSL:
+--------------------------
+	Install an SSL certificate for secure connections (HTTPS).
+
+===========================================================================
+Networking command
+===========================================================================
+1 ping <host_name>		Ping host and output results
+2 whois domain			Get whois information for domains
+3 dig domain			Get DNS information for domain
+4 dig -x host			Reverse lookup host
+5 wget <file_name>		Download file
+6 wget -c <file_name>		Continue a stopped download
+7 ifconfig			Display network interface information
+8 netstat			Display network connections and statistics.
+9 ss				Display network socket information.
+10 curl				Transfer data to or from a server.
+11 ip a
+12 ip addr
+13 traceroute
+14 tracepath
+15 nslookup
+16 route
+17 host
+28 arp
+29 iwcofig
+30 hostname
+31 mtr
+32 ifplugstatus
+33 iftop
+34 tcpdum	
+
+=========================================================================== 
+Bash Shortcuts
+===========================================================================
+1 Ctrl + a 	Move to the beginning of the line
+2 Ctrl + b	Move back one character.
+3 Ctrl + c	Halts the current command
+4 Ctrl + z	Stops the current command, resume with fg in the foreground or bg in the background
+5 Ctrl + d	Logout the current session, similar to exit
+6 Ctrl + e	Move to the end of the line
+7 Ctrl + f	Move forward one character
+8 Ctrl + G	Escape from history search mode.
+9 Ctrl + P	Go to the previous command in history.
+10 Ctrl + n	Go to the next command in history.
+11 Ctrl + k	Cut/delete from the cursor position to the end of the line.12 Ctrl + w	Erases one word in the current line
+13 Ctrl + u	Erases the whole line
+14 Ctrl + Y	Paste the last cut text.
+15 Ctrl + W	Cut/delete the word before the cursor.
+15 Ctrl + r	Type to bring up a recent command
+16 !!		Repeats the last command
+17 Ctrl + l	Clear the screen.
+18 Ctrl+Alt+t	Open the terminal.
+19 Alt+F2	Open the terminal as direct command.
+20 exit		Logout the current session
+21 TAB		Fill up the balance word in terminal. 
+
+===========================================================================
+Nano EditorCommand	Description
+===========================================================================
+Ctrl + O	 Save the file.
+Ctrl + X	Exit Nano (prompt to save if modified).
+Ctrl + R	Read a file into the current buffer.
+Ctrl + J	Justify the current paragraph.
+Ctrl + Y	Scroll up one page.
+Ctrl + V	Scroll down one page.
+Alt + \		Go to a specific line number.
+Alt + ,	 	Go to the beginning of the current line.
+Alt + .		Go to the end of the current line.
+Ctrl + K	Cut/delete from the cursor position to the end of the line.
+Ctrl + U	Uncut/restore the last cut text.
+Ctrl + 6	Mark a block of text for copying or cutting.
+Ctrl + K	Cut/delete the marked block of text.
+Alt + 6		Copy the marked block of text.
+Ctrl + W	Search for a string in the text.
+Alt + W		Search and replace a string in the text.
+Alt + R		Repeat the last search.
+
+===========================================================================
+Vi EditorCommand	Description
+===========================================================================
+cw		Change the current word. Deletes from the cursor position to the end of the current word and switches to insert mode.
+dd		Delete the current line.
+x		Delete the character under the cursor.
+R		Enter replace mode. Overwrites characters starting from the cursor position until you press the Escape key.
+o		Insert a new line below the current line and switch to insert mode.
+u		Undo the last change.
+s		Substitute the character under the cursor and switch to insert mode.
+dw		Delete from the cursor position to the beginning of the next word.
+D		Delete from the cursor position to the end of the line.
+4dw 		Delete the next four words from the cursor position.
+A 		Switch to insert mode at the end of the current line. 
+S 		Delete the current line and switch to insert mode.
+r		Replace the character under the cursor with a new character entered from the keyboard.
+i 		Switch to insert mode before the cursor.
+3dd 		Delete the current line and the two lines below it.
+ESC 		Exit from insert or command-line mode and return to command mode.
+U		Restore the current line to its original state before any changes were made.
+~		Switch the case of the character under the cursor.
+a		Switch to insert mode after the cursor.
+C		Delete from the cursor position to the end of the line and switch to insert mode.
+
+===========================================================================
+Vim EditorCommand	Description
+===========================================================================
+i		Enter insert mode at the current cursor position.
+x		Delete the character under the cursor.
+dd		Delete the current line.
+yy		Copy the current line.
+p		Paste the copied or deleted text below the current line.
+u		Undo the last change.	
+Ctrl + R	Redo the last undo.
+:w		Save the file.
+:q		Quit Vim.
+:q!		Quit Vim without saving changes.
+:wq		Save and quit Vim.
+:s/old/new/g	Replace all occurrences of old with new in the file.
+:set nu		
+or		Display line numbers.
+:set number	
+v		Enter visual mode to select text.
+y		Copy the selected text.
+d		Delete the selected text.
+p		Paste the copied or deleted text.
+
+
+===========================================================================
+		     Git basic command
+===========================================================================
+	Git is a distributed version control system used for tracking changes in source code during software development. It allows multiple developers to collaborate on projects by managing changes to the codebase. With Git, developers can work on separate branches, merge changes, revert to previous versions, and maintain a complete history of revisions.
+	
+Syntax:
+-------
+	$ Git [options] 
+
+options:
+--------
+	 config --global:	Configure your username and email
+	 init		:	Initializing a Repository
+	 clone 		:	Cloning a Repository
+	 status		:	Check the status of your changes
+	 add		:	Stage changes for commit
+	 commit -m	:	Commit changes
+	 branch 	:	Create a new branch
+	 checkout 	:	Switch to a branch
+	 merge		:	Merge changes from another branch
+	 remote add origin:	Add a remote repository
+	 push -u origin :	Push changes to a remote repository
+	 fetch origin	:	Fetch changes from a remote repository
+	 pull origin	:	Pull changes into your local branch
+	 checkout	:	Discard changes in your working directory
+	 reset HEAD~1	:	Undo the last commit (careful, this removes the commit)
+	 log		:	View commit history
+	 
+Example:
+--------
+	$ git config --global user.name Your_Name
+	$ git config --global user.email your.email@example.com
+	$ git init
+	$ git clone <repository_url>
+	$ git status
+	$ git add <file>
+	$ git commit -m Your_commit_message
+	$ git branch <branch_name>
+	$ git checkout <branch_name>
+	$ git merge <branch_name>
+	$ git remote add origin <repository_url>
+	$ git push -u origin <branch_name>
+	$ git fetch origin
+	$ git pull origin <branch_name>
+	$ git checkout -- <file>
+	$ git reset HEAD~1 --hard
+	$ git log
+	
+===========================================================================
+		     Git Advanced command
+===========================================================================
+# Create empty Git repo in specified directory. Run with no arguments to initialize the current directory as a git repository.
+	$ git init <directory>
+  
+# Clone repo located at <repo> onto local machine. Original repo can be located on the local filesystem or on a remote machine via HTTP or SSH.
+	$ git clone [url] or <repo>
+
+# Stage all changes in <directory> for the next commit. Replace <directory> with a <file> to change a specific file.
+	$ git add <directory> or <file> or *
+
+# Commit the staged snapshot, but instead of launching a text editor, use <message> as the commit message.
+	$ git commit -m <message>
+	
+# List which files are staged, unstaged, and untracked.
+	$ git status	
+
+# Display the entire commit history using the default format. For customization see additional options.
+	$ git log
+	
+# Show unstaged changes between your index and working directory.
+	$ git diff
+
+# Fully delete your local git repository
+	$ rm -rf .git
+	
+===========================================================================
+Git Config
+===========================================================================
+# Define the author name to be used for all commits by the current user. Devs commonly use --global flag to set config options for current user.
+	$ git config --global user.name <name>
+
+# Define the author email to be used for all commits by the current user.Devs commonly use --global flag to set config options for current user.
+	$ git config --global user.email <email address>	
+
+# Enables helpful colorization of command line output
+	$ git config --global color.ui auto
+
+# Create shortcut for a Git command. E.g. alias.glog “log --graph --oneline” will set ”git glog” equivalent to ”git log --graph --oneline.
+	$ git config --global alias. <alias-name> <git-command>
+	
+# Set text editor used by commands for all users on the machine. <editor> arg should be the command that launches the desired editor (e.g., vi).
+	$ git config --system core.editor <editor>
+
+# Open the global configuration file in a text editor for manual editing.
+	$ git config --global --edit
+
+===========================================================================
+Undoing Changes
+===========================================================================
+# Create new commit that undoes all of the changes made in <commit>, then apply it to the current branch.
+	$ git revert <commit>
+	
+# Remove <file> from the staging area, but leave the working directory unchanged. This unstages a file without overwriting any changes.
+	$ git reset <file>
+
+# Shows which files would be removed from working directory. Use the -f flag in place of the -n flag to execute the clean.
+	$ git clean -n
+
+===========================================================================
+Rewriting Git History
+===========================================================================
+# Replace the last commit with the staged changes and last commit combined. Use with nothing staged to edit the last commit’s message.
+	$ git commit --amend
+
+# Rebase the current branch onto <base>. <base> can be a commit ID, branch name, a tag, or a relative reference to HEAD
+	$ git rebase <base>
+	
+# Show a log of changes to the local repository’s HEAD. Add --relative-date flag to show date info or --all to show all refs.
+	$ git reflog
+	
+===========================================================================
+Git Branches & Merge
+===========================================================================
+# List all of the branches in your repo. Add a <branch> argument to create a new branch with the name <branch>.
+ 	$ git branch [branch-name]
+
+# Create and check out a new branch named <branch>. Drop the -b flag to checkout an existing branch.
+	$ git checkout -b [branch-name]
+
+# Merge <branch> into the current branch.
+  	$ git merge [branch]
+
+# Deletes the specified branch
+  	$ git branch -d [branch-name]
+
+===========================================================================
+Remote Repository
+===========================================================================
+	A Git repository is a central storage location for managing and tracking changes in files and directories.
+
+
+# Create a new connection to a remote repo. After adding a remote, you can use <name> as a shortcut for <url> in other commands.
+	$ git remote add <name> <url>
+
+# Fetches a specific <branch>, from the repo. Leave off <branch> to fetch all remote refs.
+	$ git fetch <remote> <branch>
+
+# Fetch the specified remote’s copy of current branch and immediately merge it into the local copy.
+	$ git pull <remote>
+
+# Push the branch to <remote>, along with necessary commits and objects. Creates named branch in the remote repo if it doesn’t exist.
+	$ git push <remote> <branch>
+
+===========================================================================
+Git log
+===========================================================================
+# Limit number of commits by <limit>. E.g. ”git log -5” will limit to 5 commits.
+	$ git log <limit>
+
+# Lists version history for a file, including renames
+	$ git log --follow [file]
+
+# Condense each commit to a single line.
+	$ git log --oneline
+
+# Display the full diff of each commit.
+	$ git log -p
+
+# Include which files were altered and the relative number of lines that were added or deleted from each of them.
+	$ git log --stat
+
+# Search for commits by a particular author.
+	$ git log --author=<pattern>
+
+# Show commits that occur between <since> and <until>. Args can be a commit ID, branch name, HEAD, or any other kind of revision reference.
+	$ git log<since>..<until>
+
+# Only display commits that have the specified file.
+	$ git log -- <file>
+
+# -graph flag draws a text based graph of commits on left side of commit msgs. --decorate adds names of branches or tags of commits shown.
+	$ git log --graph --decorate
+
+===========================================================================
+Git Diff
+===========================================================================
+# Show difference between working directory and last commit.
+	$ git diff HEAD
+
+# Show difference between staged changes and last commit
+	$ git diff --cached
+
+===========================================================================
+Git Reset or Redo commits
+===========================================================================
+# Reset staging area to match most recent commit, but leave the working directory unchanged.
+	$ git reset
+
+# Reset staging area and working directory to match most recent commit and overwrites all changes in the working directory.
+	$ git reset --hard
+
+# Move the current branch tip backward to <commit>, reset the staging area to match, but leave the working directory alone.
+	$ git reset <commit>
+
+# Same as previous, but resets both the staging area & working directory to match. Deletes uncommitted changes, and all commits after <commit>.
+	$ git reset --hard <commit>
+
+===========================================================================
+Git Rebase
+===========================================================================
+	Rebasing is the process of moving or combining a sequence of commits to a new base commit. Rebasing
+is often used as an alternative to merging. Rebasing a branch updates one branch with another by
+applying the commits of one branch on top of the commits of another branch.
+	$ git rebase feature master
+	$ git rebase -i <base>
+
+===========================================================================
+Git Pull
+===========================================================================
+# Fetch the remote’s copy of current branch and rebases it into the local copy. Uses git rebase instead of merge to integrate the branches.
+	$ git pull --rebase <remote>
+
+===========================================================================
+Git Push
+===========================================================================
+# Forces the git push even if it results in a non-fast-forward merge. Do not use the --force flag unless you’re absolutely sure you know what you’re doing.
+	$ git push <remote> --force
+
+# Push all of your local branches to the specified remote.
+	$ git push <remote> --all
+	
+# Tags aren’t automatically pushed when you push a branch or use the --all flag. The --tags flag sends all of your local tags to the remote repo.
+	$ git push <remote> --tags
+
+===========================================================================
+The .gitignore file
+-------------------
+	Sometimes it may be a good idea to exclude files from being tracked with Git. This is typically done in a special file named
+.gitignore . You can find helpful templates for .gitignore files at github.com/github/gitignore.
+
+===========================================================================
+			Docker command
+===========================================================================
+What is Docker?
+---------------
+	Docker is an open platform for developing, shipping and running applications.
+	Docker is used to separate your applications from your infrastructure so you can deliver software quickly.
+	It was first released in 2013 and is developed by Docker.
+
+Docker comes in 2 flavours
+--------------------------
+Docker CE (Community Edition)
+Docker EE (Enterprise Edition)
+
+Docker deamon and registry
+--------------------------
+Docker Client:This is the CLI of docker where the user can execute the docker commands,The docker client accepts these commands and passes them to a background process called docker deamon
+
+Docker deamon: This process accepts the commands coming from the docker client and routes them to work on docker images or containers or the docker registry.
+
+Docker registry: This is the cloud site of docker where docker images are stored.This is of two types
+1 Public registry(hub.docker.com)
+2 Private registry(Setup on one of our local servers)
+
+===========================================================================
+Setup of Docker on Windows 
+===========================================================================
+1 Download docker desktop from
+  https://www.docker.com/products/docker-desktop
+
+2 Install it
+
+3 Once docker is installed we can use Power shell
+  to run the docker commands
+
+===========================================================================
+Install docker on Linux
+===========================================================================
+1 Create an Ubuntu instance on AWS
+2 Connect to it using git bash
+3 Execute the below 2 commands
+  curl -fsSL https://get.docker.com -o get-docker.sh
+  sh get-docker.sh
+
+===========================================================================
+Docker commands
+===========================================================================
+Creating customsied docker images
+---------------------------------
+This can be done in 2 ways
+1 Using docker commit command
+2 Using dockerfile
+
+===========================================================================
+Working on docker images
+===========================================================================
+	A Docker image is read-only template with instructions for creating a Docker container.
+	Docker image is a combination of bin/libs that are necessary for a software application to work.
+For example, you may build an image which is based on the ubuntu image, but installs the Apache web server and your application, as well as the configuration details needed to make your application run.
+
+Syntax:
+-------
+	$ docker [options] image_name/image_id
+
+options:
+--------
+	 login		:	Login to Docker Hub
+	 pull 		:	To pull a docker image
+	 search 	:	To search for a docker images
+	 tag 		:	Tag your Docker Image
+	 push 		:	To upload an image into docker hub
+	 images or image ls:	To see the list of images that are downloaded
+	 image inspect	:	To get detailed info about a docker image
+	 rmi		:	To delete a docker image that is not linked to any container
+	 rmi -f 	:	To delete a image that is linked to a container
+	 build -t 	:	To create a docker image from a Dockerfile
+	 commit 	:	To create an image from a running container	 
+	 save -o	:	To save the docker image as a tar file
+	 load -i tarfile_name:	To untar this tar file and get  image
+	 system prune -af :	To delete all image
+	 
+Example:
+--------
+	$ docker login
+	$ docker pull image_name
+	$ docker search image_name
+	$ docker tag <local_image_name>:<local_image_tag> <dockerhub_username>/<repository_name>:<tag>
+	$ docker push <dockerhub_username>/<repository_name>:<tag>
+	$ docker images or docker image ls
+	$ docker image inspect image_name/image_id
+	$ docker rmi image_name/image_id
+	$ docker rmi -f image_name/image_id
+	$ docker build -t image_name .
+	$ docker commit container_id/container_name image_name
+	$ docker save -o /path/to/local/file.tar image_name
+	$ docker load -i tarfile_name
+	$ docker system prune -af
+	
+===========================================================================
+Working on docker containers
+===========================================================================
+	container is a runnable instance of an image. You can create, start, stop, move or delete a container using the Docker API or CLI. You can connect a container to one or more network, attach storage to it or even create a new image based on its current state.
+	A container is simply an isolated environment.
+
+Syntax:
+-------
+	$ docker [options] container_id/container_name
+
+options:
+--------
+	 run -itd	:	To create a docker container
+	 container ls	:	To see the list of running containers
+	 ps -a		:	To see the list of all containers (running and stopped)
+	 start 		:	To start a container
+	 stop		:	To stop a container
+	 restart	:	To restart a container
+	 restart -t 10	:	To restart after 10 seconds
+	 rm		:	To delete a stopped container
+	 rm -f 		:	To delete a running container
+	 stop $(docker ps -aq):	To stop all running containe
+	 rm $(docker ps -aq)  :	To delete all stopped containers
+	 rm -f $(docker ps -aq):To delete all running and stopped containers
+	 inspect	:	To get detailed info about a container
+	 stats		:	To display CPU process & memory usage
+	 logs		:	To see the logs genearated by a container
+	 port		:	To see the ports used by a container
+	 exec -it 	:	To run any process in a container from outside the container
+	 attach		:	To go back into a container from where the interactive terminal is running
+	 container	:	To see the processes running in a container
+	 
+Example:
+--------
+	$ docker run -itd image_name/image_id
+	$ docker container ls
+	$ docker ps -a
+	$ docker start container_id/container_name
+	$ docker stop container_id/container_name
+	$ docker restart container_id/container_name
+	$ docker restart -t 10 container_id/container_name
+	$ docker rm container_id/container_name
+	$ docker rm -f container_id/container_name
+	$ docker stop $(docker ps -aq)
+	$ docker rm $(docker ps -aq)
+	$ docker rm -f $(docker ps -aq)
+	$ docker inspect container_id/container_name
+	$ docker logs container_id/container_name
+	$ docker port container_id/container_name
+	$ docker exec -it container_id/container_name process_name or docker exec -it container_id/container_name /bin/bash
+	$ docker attach container_id/container_name
+	$ docker container container_id/container_name top
+	
+===========================================================================
+Additional command
+===========================================================================
+Syntax:
+-------
+	$ docker run image_name/image_id
+   
+options
+-------
+	-i -> input / interactive
+	-t -> terminal
+	-d -> detached mode
+   --name	: Used to give a name to the container
+   --restart	: Used to keep the container in runnign condition
+   -d		: Used to run the container in detached mode in background
+   -it		: Used to open interactive terminal in the container
+   -e		: Used to pass environment varibales to the container
+   -v 		: Used to attach an external device or folder as a volume
+   --volumes-from: Used to share volume between multiple containers
+   -p		: Used for port mapping.It will link the container port with host port.
+   Eg: -p 8080:80 Here 8080 is host port(external port) and 80 is container port(internal port)
+   
+   -P		: Used for automatic port mapping where the container port is mapped with some host port that is greate than 30000
+   --link 	: Used to create a link between multiple containers to create a microservices architecture.
+   --network	: Used to start a container on a specific network
+   -rm 		: Used to delete a container on exit
+   -m		: Used to specify the upper limit on the amount of memeory that a container can use
+   -c		: Used to specify the upper limit on the amout of cpu a container can use
+   -ip		: Used to asssign an ip to the container
+
+# To come out of a container without exit
+	$ ctrl+p,ctrl+q
+
+===================================================================
+Working on docker networks
+===================================================================
+Syntax:
+-------
+	$ docker [options] network_name/network_id container_id/container_name
+
+options:
+--------
+	 network ls		:	To see the list of docker networks
+	 network create --driver:	To create a docker network
+	 network insepct	:	To get detailed info about a network
+	 network rm		:	To delete a docker network
+	 netowork connect	:	To connect a running container to a network
+	 netowork disconnect	:	To disconnect a running container to a network
+	 
+Example:
+--------
+	$ docker network ls
+	$ docker network create --driver network_type network_name
+	$ docker network insepct network_name/network_id
+	$ docker network rm network_name/network_id
+	$ docker netowork connect network_name/network_id container_name/container_id
+	$ docker netowork disconnect network_name/network_id container_name/container_id
+
+===================================================================
+Working on docker volumes
+===================================================================
+	A Docker volume is a mechanism used to persist data generated by and used by Docker containers. Once a container is delete all the data of the container is lost. To preserve the data even if the container is deleted we can use volumes.
+Docker volumes are separate from the container's filesystem and can be managed independently. 
+
+Syntax:
+-------
+	$ docker [options] volume_name/volume_id
+
+options:
+--------
+	 volume ls	:	To see the list of docker  volumes
+	 volume create	:	To create a docker volume
+	 volume insepct	:	To get detailed info about a volume
+	 volume rm	:	To delete a volume
+	 
+Example:
+--------
+	$ docker volume ls
+	$ docker volume create volume_name
+	$ docker volume inspect volume_name/volume_id
+	$ docker volume rm volume_name/volume_id
+   
+===================================================================
+UseCase 1
+=============
+1 Create an nginx contaienr in detached mode and name it webserver
+  Also perfrom port mapping
+  docker run  --name webserver -p 8888:80 -d nginx
+
+2 To check if the nginx container is running
+  docker container ls
+
+3 To access the nginx container from the leve of browser
+  public_ip_of_dockerhost:8888
+
+===================================================================
+UseCase 2
+===============
+1 Start tomcat as a container and perfrom automatic port mapping
+  docker run --name appserver -d -P tomee
+
+2 To see the ports used by the above container
+  docker port appserver
+
+3 To access the httpd from borwser
+  piblic_ip_of_dockerhost:9090
+
+===================================================================
+UseCase 3
+================
+1 Start a jenkins container in detached mode and also perfrom   port mapping
+  docker run --name myjenkins -d -p 9999:8080 jenkins/jenkins
+
+2 To see the ports used by the above container
+  docker port appserver
+
+3 To access jenkins from browser
+  public_ip_of_docker_host:port_no_from_above_command
+
+===================================================================
+UseCase 4
+==================
+1 Create an ubuntu container and launch interactive terminal
+  docker run  --name u1 -it ubuntu
+
+2 To come out of the centos container
+  exit
+
+===================================================================
+UseCase 5
+==================
+1 Start centos as a container and launch interactive terminal in it
+  docker run --name mycentos -it  centos
+
+2 To come out of the centos container
+  exit
+
+===================================================================
+UseCase 6
+==========
+Create a mysql container and login as root user and create some sql tables
+--------------------------------------------------------------------------
+1 Create a mysql container
+  docker run --name db -d -e MYSQL_ROOT_PASSWORD=intelliqit mysql:5
+
+2 To check if the mysql container is running
+  docker container ls
+
+3 To go into the bash shell of the container
+  docker exec -it db bash
+
+4 To login into the database
+  mysql -u root -p
+  Password: intelliqit
+
+5 To see the list of databases
+  show databases;
+
+6 To move into any of the above database
+  use databasename;
+  Eg: use sys;
+
+7 To create emp and dept tables here
+  Open
+  https://justinsomnia.org/2009/04/the-emp-and-dept-tables-for-mysql/
+  Copy script from emp and dept tables creation
+  Paste in the mysql container
+
+8 To see the data of the tables
+  select * from emp;
+  select * from dept;
+
+=========================================================================
+To setup a multi container architecture
+=========================================================================
+1 Using --link run command option (depricated)
+2 Docker compose
+3 Docker Networkings
+4 Python Scripting
+5 Ansible Playbooks
+
+========================================================================
+UseCase
+========
+
+Create 2 busybooks containers c1 and c2 and link them
+
+1 Create a busybox contaienr and name it c1
+  docker run --name c1 -it busybox
+
+2 To come out of the c1 contaienr without exit
+  ctrl+p,ctrl+q
+
+3 Create another busybox container c2 and link it with c1 container
+  docker run --name c2 -it --link c1:mybusybox  busybox
+
+4 Check if c2 is pinging to c1
+  ping c1
+
+=========================================================================
+UseCase
+=======
+Create a postgres container and link with adminer client application
+1 Create a postgres container
+  docker run --name mydb -e POSTGRES_PASSWORD=intelliqit -e POSTGRES_USER=myuser -e POSTGRES_DB=mydb postgres
+
+2 Create an adminer container and link with postgres database
+  docker run --name myadminer -d -p 9090:8080 --link mydb:mysql adminer
+
+3 To access the database from adminer
+  Launch any browser
+  public_ip_of_host:9090
+  Enter credentials of postgres
+
+===================================================================
+Setup wordpress and link it with mysql container
+================================================
+1 Create a mysql container
+   docker run --name mydb -d -e MYSQL_ROOT_PASSWORD=intelliqit  mysql:5
+
+2 Create a wordpress container and link with the mysql container
+  docker run --name mywordpress -d -p 8888:80 --link mydb:mysql wordpress
+
+3 To check if wordpress and mysql containers are running
+  docker container ls
+
+4 To access wordpress from a browser
+  public_ip_dockerhost:8080
+
+5 To check if wordpress is linked with mysql
+  docker inspect mywordpress
+  Search for Links section
+
+=======================================================================
+UseCase
+========
+Setup CI-CD environment where a Jenkins container is linked with
+2 tomcat containers for QAserver and PRodserver
+
+1 Create a jenkins container
+  docker run  --name myjenkins -d -p 5050:8080 jenkins/jenkins
+
+2 To access jenkins from browser
+  public_ip_dockerhost:5050
+
+3 Create a tomcat container as qaserver and link with jenkins container
+  docker run --name qaserver -d -p 6060:8080 --link myjenkins:jenkins tomee
+
+4 Create another tomcat container as prodserver and link with jenkins
+  docker run --name prodserver -d -p 7070:8080 --link myjenkins:jenkins tomee
+
+5 Check if all 3 containers are running
+  docker container ls
+
+=======================================================================
+Setup LAMP architecture 
+===================================================================
+1 Create mysql container
+  docker run --name mydb -d -e MYSQL_ROOT_PASSWORD=intelliqit mysql
+
+2 Create an apache container and link with mysql container
+  docker run --name apache -d -p 9999:80 --link mydb:mysql httpd
+
+3 Create a php container and link with mysql and apache containers
+  docker run --name php -d --link mydb:mysql --link apache:httpd php:7.2-apache
+
+4 To check if php container is linked with apache and mysql
+  docker inspect php
+
+=================================================================
+UseCase
+================
+Create a testing environment where a selenium hub container is linked
+with 2 node containers one with chrome and other with firefox installed
+-----------------------------------------------------------------------
+1 Create a selenium hub container
+  docker run --name hub -d -p 4444:4444  selenium/hub 
+
+2 Create a container with chrome installed on it
+  docker run --name chrome -d -p 5901:5900 --link hub:selenium 
+                                            selenium/node-chrome-debug
+
+3 Create another container with firefox installed on it
+  docker run --name firefox -d -p 5902:5900 --link hub:selenium 
+                                           selenium/node-firefox-debug
+
+4 The above 2 containers are GUI ubuntu containers and we can
+  access their GUI using VNC viewer
+  a) Install VNC viewer from
+     https://www.realvnc.com/en/connect/download/viewer/
+
+  b) Open vnc viewer--->Public ip of docker host:5901 or 5902
+     Click on Continue--->Enter password: secret
+
+========================================================================
+Docker compose
+========================================================================
+	Docker Compose is a tool that allows you to define and manage multi-container Docker applications. It uses YAML files to configure the services, networks, and volumes required for your application, making it easier to define complex environments with multiple interconnected containers.
+For Example, Docker compose use a yaml files to configure the multi container architecture with a single command, you can create and run multiple container from your cofiguration and these files can be reused any number of time.
+
+Url: https://docs.docker.com/compose/install/
+
+=======================================================================
+UseCase
+=======
+Create a docker compose file to setup a mysql and wordpress container and link them
+
+vim docker-compose.yml
+------------------------
+version: '3.8'
+
+services:
+ mydb:
+  image: mysql:5
+  environment:
+   MYSQL_ROOT_PASSWORD: intelliqit
+
+ mywordpress:
+  image: wordpress
+  ports:
+   - 8888:80
+  links:
+   - mydb:mysql
+...
+
+1 To setup the containers from the above file
+  docker-compose up -d
+
+2 To stop all the container of the docker compose file
+  docker-compose stop
+
+3 To start the container
+  docker-compose start
+
+4 To stop and delete
+  docker-compose down
+
+========================================================================
+UseCase
+=================
+Create a docker compsoe file to setup the CI-CD environment
+where a jenkins container is linked with 2 tomee containers
+one for qaserver and other for prodserver
+
+vim docker-compose.yml
+------------------------
+version: '3.8'
+
+services:
+ myjenkins:
+  image: jenkins/jenkins
+  ports:
+   - 5050:8080
+
+ qaserver:
+  image: tomee
+  ports:
+   - 6060:8080
+  links:
+   - myjenkins:jenkins
+
+ prodserver:
+  image: tomee
+  ports:
+   - 7070:8080
+  links:
+   - myjenkins:jenkins
+...
+
+===========================================================================
+UseCase
+==============
+Create a docker compose file to setup the LAMP architecture
+vim lamp.yml
+-------------
+version: '3.8'
+
+services:
+ mydb:
+  image: mysql
+  environment:
+   MYSQL_ROOT_PASSWORD: intelliqit
+
+ apache:
+  image: httpd
+  ports:
+   - 8989:80
+  links:
+   - mydb:mysql
+
+ php:
+  image: php:7.2-apache
+  links:
+   - mydb:mysql
+   - apache:httpd
+...
+
+1 To create containers from the above file
+  docker-compose -f lamp.yml up -d
+
+2 To delete the containers
+  docker-compose -f lamp.yml down
+
+========================================================================
+UseCase
+============
+Create a docker compose file to setup the selenium testing
+environment where a selenium hub container is linked with
+2 node containers one with chrome and other with firefox
+
+vim docker-compose.yml
+------------------------
+version: '3.8'
+
+services:
+ hub:
+  image: selenium/hub
+  ports:
+   - 4444:4444
+  container_name: hub
+
+ chrome:
+  image: selenium/node-chrome-debug
+  ports:
+   - 5901:5900
+  links:
+   - hub:selenium
+  container_name: chrome
+
+ firefox:
+  image: selenium/node-firefox-debug
+  ports:
+   - 5902:5900
+  links:
+   - hub:selenium
+  container_name: firefox
+...
+
+1 To setup the above architecture
+  docker-compose up -d
+
+2 To check the running containers
+  docker container ls
+
+3 To delete the containers
+  docker-compose down
+
+===========================================================================
+			   Docker Volumes
+===========================================================================
+	Containers are ephemeral(temporary) but the data processed by the containers should be persistent.Once a container is delete all the data of the container is lost.
+To preserve the data even if the container is deleted we can use volumes.
+
+Volumes are classified into 3 types
+-----------------------------------
+1 Simple docker volume
+2 Sharable dokcer volumes
+3 Docker volume containers
+
+===========================================================================
+Simple Docker volumes
+===========================================================================
+	These voluems are used only for preserving the data on the host
+machine even if the containers is deleted.
+
+UsedCase
+--------
+Create a directory /data and mount it as a volume on an ubuntu container
+Create some files in the mounted volumes and check if the files
+are preserved on the host machine even after the container is deleted
+
+1 Create /data directory
+  mkdir /data
+
+2 Create an ubuntu container and mount the above directory as volume
+  docker run --name u1 -it -v /data ubuntu
+  In the container u1 go into /data directory and create some files
+  cd /data
+  touch file1 file2 file3
+  exit
+
+3 Identify the locatiuon where the mounted data is preserved
+  docker inspect u1
+  Search for Mounts section and copy the Source path
+
+4 Delete the container
+  docker rm -f u1
+
+5 Check if the data is still present
+  cd source_path_from_step3
+  ls
+
+======================================================================
+Sharable Docker volumes
+======================================================================
+These volumes are sharabale between multiple containers
+-------------------------------------------------------
+Create 3 centos containers c1,c2,c3.
+Mount /data as a volume on c1 container ,c2 should use the volume
+used by c1 and c3 should use the volume used by c2
+
+1 Create a centos container c1 and mount /data 
+  docker run --name c2 -it -v /data centos
+
+2 Go into the data folder create files in data folder
+  cd data
+  touch f1 f2
+
+3  Come out of the container without exit
+   ctlr+p,ctlr+q
+
+4 Create another centos container c2 and it should used the voluems used by c1
+  docker run --name c2 -it --volumes-from c1 centos
+  
+5 In the c2 container go into data folder and create some file
+  cd data
+  touch f3 f4
+
+6 Come out of the container without exit
+   ctlr+p,ctlr+q
+
+7 Create another centos container c3 and it should use the volume used by c2
+  docker run --name c3 -it --volumes-from c2 centos
+
+8 In the c3 container go into data folder and create some file
+  cd data
+  touch f5 f6
+
+9 Come out of the container without exit
+   ctlr+p,ctlr+q
+
+10 Go into any of the 3 contianers and we will see all the files
+   docker attach c1
+   cd /data
+  ls
+  exit
+
+12 Identify the location the where the mounted data is stored
+   docker inspect c1
+   Search for Mounts section and copy the Source path
+
+13 Delete all containers
+   docker rm -f c1 c2 c3
+
+14 Check if the files are still present
+   cd source_path_fromstep12
+
+===========================================================================
+Docker volume containers
+===========================================================================
+	These volumes are bidirectoinal ie the changes done on host
+will be reflected into container and changes done by container
+will be reflected to host machine
+
+1 Create a volume 
+  docker volume create myvolume
+
+2 To check the location where the mounted the volume works
+  docker volume inspect myvolume
+
+3 Copy the path shown in MountPoint and cd to that Path
+  cd MountPoint
+
+4 Create few files here
+  touch file1 file2
+
+5 Create a centos container and mount the above volume into the tmp folder
+  docker run --name c1 -it -v myvolume:/tmp centos
+
+6 Change to tmp folder and check for the files
+  cd /tmp
+  ls
+  If we create any files here they will be reflected to host machine
+  And these files will be present on the host even after deleting the 
+  container.
+
+===========================================================================
+UseCase
+============
+Create a volume newvolume and create tomcat-users.xml file in it
+Create a tomcat container and mount the above volume into it
+Copy the tomcat-users.xml files to the required location
+
+1 Create a volume
+  docker volume create newvolume
+
+2 Identify the mount location
+  docker volume inspect newvolume
+  Copy the MountPoint path
+
+3 Move to this path
+  cd MountPoint path
+
+4 Create a file called tomcat-users.xml
+  cat > tomcat-users.xml
+  <tomcat-users>
+      <user username=intelliqit password=intelliqit roles=manager-script/>
+  </tomcat-users>
+
+5 Create a tomcat container and mount the above volume
+  docker run --name webserver -d -P -v newvolume:/tmp tomcat
+
+6 Go into bash shell of the tomcat container
+  docker exec -it webserver bash
+
+7 Move the tomcat-users.xml file into conf folder
+  mv /tmp/tomcat-users.xml conf/
+
+===========================================================================
+Creating customsied docker images
+---------------------------------
+This can be done in 2 ways
+1 Using docker commit command
+2 Using dockerfile
+
+===========================================================================
+Using the docker commit command
+===========================================================================
+UseCase
+============
+Create an ubuntu container and install some s/w's in it
+Save this container as an image and later create a new container
+from the newly created image.We will find all the s/w's that we 
+installed.
+
+1 Create an ubuntu container
+  docker run --name u1 -it ubuntu
+
+2 In the container update the apt repo and install s/w's
+  apt-get update
+  apt-get install -y git
+
+3 Check if git is installed or not
+  git --version
+  exit
+
+4 Save the customised container as an image
+  docker commit u1 myubuntu
+
+5 Check if the new image is created or not
+  docker images
+
+6 Delete the previousely create ubuntu container
+  docker rm -f u1
+
+7 Create an new container from the above created image 
+  docker run --name u1 -it myubuntu
+
+8 Check for git 
+  git --version
+
+===========================================================================
+Dockerfile
+===========================================================================
+	Dockerfile uses predefined keyword to create customsied
+docker images.
+
+Important keyword in dockerfile
+-------------------------------
+FROM : This is used to specify the base image from where a
+customised docker image has to be created
+
+MAINTAINER : This represents the name of the organization or the
+author that has created this dockerfile
+
+RUN :Used to run linux commands in the container
+     Generally it used to do s/w installtion or
+     running scripts
+
+USER : This is used to specify who should be the default user
+       to login into the container
+
+COPY : Used to copy files from host to the customised image that
+       we are creating
+
+ADD : This is similar to copy where it can copy files from host
+      to image but ADD can also downlaod files from some remote server
+
+EXPOSE : USed to specify what port should be used by the container
+
+VOLUME : Used for automatic volume mounting ie we will have a volume
+         mounted automatically when the container start
+
+WORKDIR : Used to specify the default working directory of the container
+
+ENV : This is used to specify what environment varibles should
+     be used
+
+CMD : USed to run the default process of the container from outside
+      
+ENTRYPOINT : This is also used to run the default process of the container
+             
+LABEL: Used to store data about the docker image in key value pairs
+
+SHELL : Used to specify what shell should be by default used by the image
+
+===========================================================================
+UseCase
+===========
+Create a dockerfile to use nginx as abse image and specify
+the maintainer as intelliqit
+
+1 Create docker file
+vim dockerfile
+
+FROM nginx
+MAINTAINER intelliqit
+
+2 To create an image from this file
+  docker build -t mynginx .
+
+3 Check if the image is created or not
+  docker images
+
+-----------------------------------------------------------------------
+UseCase
+==============
+Create a dockerfile from ubuntu base image and install 
+git in it
+
+1 Create dockerfile
+  vim dockerfile
+  FROM ubuntu
+  MAINTAINER intelliqit
+  RUN apt-get update
+  RUN apt-get install -y git
+
+2 Create an image from the above file
+  docker build -t myubuntu .
+
+3 Check if the new image is created
+  docker images
+
+4 Create a container from the new image and it should have git installed
+  docker run  --name u1 -it myubuntu
+  git --version
+
+=========================================================
+Cache Busting
+===================
+	When we create an image from a dockerfile docker stores all the 
+executed isntructions in a its cache.
+Next time if we edit the same docker file and add few new instructions and build an image
+out of it docker will not execute the previously executed statements
+Instead it will read them from the cache
+This is a time saving mechanism
+The disadvantage is if the docker file is edited with a huge time
+gap then we might end up installing s/w's that are outdated
+
+Eg: 
+FROM ubuntu
+RUN apt-get update
+RUN apt-get install -y git
+
+If we build an image from the above dockerfile docker saves all 
+these instructions in the dockercache and if we add the below
+statement
+RUN apt-get install -y tree
+only this latest statement will be excuted
+
+To avoid this problem and make docker execute all the instructions 
+once more time without reading from cache we use cache busting
+docker build --no-cache -t myubuntu .
+
+===============================================================
+Download docker shell script into the docker host and copy it into the customsied docker image
+and later install it at the time of creating the image
+
+1 Download docker script
+  curl -fsSL https://get.docker.com -o get-docker.sh
+
+2 Create the dockerfile
+  vim dockerfile
+  FROM ubuntu
+  MAINTIANER intelliqit
+  COPY get-docker.sh /
+  RUN sh get-docker.sh
+
+4 Create an image from the dockerfile
+  docker build -t myubuntu .
+
+5 Create a container from the above image
+  docker run  --name u1 -it myubuntu
+
+6 Check if the get-docker.sh is present in / and also see if docker is installed
+  docker --version
+
+===========================================================================
+Create a dockerfile from ubuntu base image and downlaod jenkins.war
+into it
+
+1 Create a dockerfile
+  vim dockerfile
+  FROM ubuntu
+  MAINTIANER intelliqit
+  ADD https://get.jenkins.io/war-stable/2.263.4/jenkins.war  /
+
+2 Create an image from the above dockerfile
+  docker build -t myubuntu .
+
+4 Create a container from this image
+  docker run --name u1 -it myubuntu
+ 
+5 Check if jenkins.war is present
+  ls
+
+===========================================================================
+Create a dockerfile from jenkins base image and make the default user as root
+
+1 vim dockerfile
+  FROM jenkins/jenkins
+  MAINTAINER intelliqit
+  USER root
+
+2 Create an image from the above dcokerfile
+  docker build -t myjenkins .
+
+3 Create a container from the above image
+  docker run --name j1 -d -P myjenkins
+
+4 Go into the interactive shell and check if the default user is root
+  docker exec -it j1 bash
+  whoami
+
+===========================================================================
+Create a docekerfile from nginx base image and expose 90 port
+1 vim dockerfile
+  FROM nginx
+  MAINTAIENR intelliqit
+  EXPOSE 90
+
+2 Create an image from the above file
+  docker build -t mynginx .
+
+3 Create a container from the above image
+  docker run --name n1 -d -P mynginx
+
+4 To check the port
+  docker port n1
+
+===========================================================================
+UseCase
+=============
+Create a dockerfile from ubuntu base image and make it behave
+like nginx
+
+1 Create a dockerfile
+  vim dockerfile
+  FROM ubuntu
+  MAINTAINER intelliqit
+  RUN apt-get update
+  RUN apt-get install -y nginx
+  ENTRYPOINT [/usr/sbin/nginx,-g,daemon off;]
+  EXPOSE 80
+
+2 Create an image from the above dockerfile
+  docker build -t myubuntu .
+
+3 Create a container from the above image and it will work like nginx
+  docker run --name n1 -d -P myubuntu
+
+4 Check the ports used by nginx
+  docker container ls
+
+5 To access nignx from browser
+  public_ip_of_dockerhost:port_no_captured_from_step4
+
+=======================================================================
+CMD and ENTRYPOINT
+------------------------
+Bothe of them are used to specify the default process that should be
+triggered when the container starts but the CMD instruction can be 
+overridden with some other process passed at the docker run command
+
+Eg:
+FROM ubuntu
+RUN apt-get update
+RUN apt-get install -y nginx
+CMD [/usr/sbin/nginx,-g,daemon off;]
+EXPOSE 80
+
+Though the default process is to trigger nginx we can bypass that
+and make it work on some other process
+
+docker build -t myubuntu .
+Create a container
+docker run --name u1 -it -d myubuntu
+Here if we inspect the default process we will see that 
+nginx as the default process
+docker container ls
+
+on the otherhand we can modify that default process to something else
+docker run --name u1 -d -P myubuntu ls -la
+Now if we do docker container ls  we will see the dafault process
+to be ls -la
+
+===========================================================================
+Docker Networking command
+===========================================================================
+Docker supports 4 types of networks
+1 Bridge
+2 Host
+3 Null
+4 Overlay
+========================================================================== 
+UseCase
+========
+Create 2 bridge networks intelliq1 and intelliq2
+Create 2 busybox containers c1,c2 and c3
+c1 and c2 should run on intelliq1 network and shoul ping each other
+c3 should run on intelliq2 network and it should not be able to ping c1 or c2
+Now put c2 on intelliq2 network,since c2 is on both intelliq1 and intelliq2
+networks it should be able to ping to both c1 and c3
+but c1 and c3 should not ping each other directly
+
+1 Create 2 bridge networks
+  docker network create --driver bridge intelliq1
+  docker network create --driver bridge intelliq2
+
+2 Check the list of available networks
+  docker network ls
+
+3 Create a busybox container c1 on intelliqi1 network
+  docker run --name c1 -it --network intelliq1 busybox
+  Come out of the c1 container without exit ctrl+p,ctrl+q
+
+4 Identify the ipaddress of c1
+  docker inspect c1
+
+5 Create another busybox container c2 on intelliq1 network
+  docker run --name c2 -it --network intelliq1 busybox
+  ping ipaddress_of_c1    (It will ping)
+  Come out of the c2 container without exit ctrl+p,ctrl+q
+
+6 Identify the ipaddress of c2
+  docker inspect c2
+
+7 Create another busybox container c3 on intelliq2 network
+  docker run --name c3 -it --network intelliq2 busybox
+  ping ipaddress_of_c1  (It should not ping)
+  ping ipaddress_of_c2  (It should not ping)
+  Come out of the c3 container without exit ctrl+p,ctrl+q
+
+8 Identify the ipaddress of c3
+  docker inspect c3 
+
+9 Now attach intelliq2 network to c2 container
+  docker network connect intelliq2 c2
+
+10 Since c2 is now on both intelliq1 and intelliq2 networks it should ping
+   to both c1 and c3 containers
+   docker attach c2
+   ping ipaddress_of_c1  (It should  ping)
+   ping ipaddress_of_c3  (It should  ping)
+   Come out of the c2 container without exit ctrl+p,ctrl+q
+
+11 But c1 and c3 should not ping each other
+   docker attach c3
+   ping ipaddress_of_c1  (It should not ping)
+
+===========================================================================
+Working on docker registry
+===========================================================================
+This is the location where the docker images are saved
+------------------------------------------------------
+This is of 2 types
+1 Public registry
+2 Private regsitry
+
+UseCase
+Create a customised centos image and upload into the public registry
+
+1 Signup into hub.docker.com
+
+2 Create a customsied centos image
+  a) Create a centos container and install git init
+     docker run --name c1 -it centos
+    yum -y update
+    yum -y install git
+    exit
+
+  b) Save this container as an image
+     docker commit c1 intelliqit/mycentos
+
+3 Login into dockerhub
+  docker login
+  Enter username and password of dockerhub
+
+4  Push the customised image
+   docker push intelliqit/mycentos
+
+===============================================
+Note: To create network with a specific subnet range
+docker network create --driver bridge --subnet=192.168.2.0/24 intelliqit
+
+Docker compose by deafult creates its own customised bridge network and creates
+containers on the netowork
+
+vim docker-compose.yml
+------------------------
+version: '3.8'
+
+services:
+  mydb:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: intelliqit
+      POSTGRES_DB: mydb
+      POSTGRES_USER: myuser
+
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
+
+1 To setup the containers
+  docker compose up -d
+
+2 To see the list of containers
+  docker container ls
+
+3 To see the list of networks
+  docker network ls
+
+4 To above 2 containers will be running on a new bridge network that is created by docker
+  compose
+
+5 To delete the containers
+  docker compose down
+This will not only delete the containers it will also delete the networks
+that got created.
+
+===========================================================================
+UseCase
+=============
+Create a custom bridge network and create a docker compose file
+to start postgres and adminer container on the above created
+network
+
+1 Create a custom bridge network
+  docker network create --driver bridge --subnet 10.0.0.0/24 intelliqit
+
+2 Create a docker compose file
+  vim docker-compose.yml
+------------------------
+version: '3.8'
+
+services:
+ db:
+  image: postgres
+  environment:
+   POSTGRES_PASSWORD: intelliqit
+   POSTGRES_USER: myuser
+   POSTGRES_DB: mydb
+
+ adminer:
+  image: adminer
+  ports:
+   - 8888:8080
+
+networks:
+ default:
+  external:
+   name: intelliqit
+...
+
+3 To create the containers
+  docker-compose up -d
+
+4 To see if adminer and postgres contianers are created
+  docker container ls
+
+5 To check if they are running on intelliqit network
+  docker inspect container_id_from_Step4
+
+========================================================================
+Create a dockerfile and use it directly in docker-compsoe
+
+vim dockerfile
+FROM jenkins/jenkins
+MAINTAINER intelliqit
+RUN apt-get update
+RUN apt-get install -y git
+
+vim docker-compose.yml
+version: '3.8'
+
+services:
+ jenkins:
+  build: .
+  ports:
+   - 7070:8080
+  
+
+ mytomcat:
+  image: tomee
+  ports:
+   - 6060:8080
+  
+...
+
+
+
+1 To start the services
+  docker-compose up
+
+=============================================================================
+Docker compose file to create 2 networks and run  containers  on different network
+vim docker-compose.yml
+------------------------
+version: '3.8'
+
+services:
+ mydb:
+  image: jenkins/jenkins
+  ports:
+   - 5050:8080
+  networks:
+   - abc
+
+ qaserver:
+  image: tomee
+  ports:
+   - 6060:8080
+  networks:
+   - xyz
+
+ prodserver:
+  image: tomee
+  ports:
+   - 7070:8080
+  networks:
+   - xyz
+
+networks:
+ abc: {}
+ xyz: {}
+...
+
+===================================================
+Docker compose file to create  2 containers and also create 2 volumes for both the containers
+vim docker-compose.yml
+------------------------
+version: '3.8'
+
+services:
+ db:
+  image: mysql:5
+  environment:
+   MYSQL_ROOT_PASSWORD: intelliqit
+ volumes:
+   mydb:/var/lib/mysql
+
+ wordpress:
+  image: wordpress
+  ports:
+   - 9999:80
+  volumes:
+   wordpress:/var/www/html
+
+
+volumes:
+  mydb:
+  wordpress
+
+1 To start the service
+  docker-compose up -d
+ 
+2 To see the list of volumes
+  docker volume ls
+
+===========================================================================
+			   Docker Swarm
+===========================================================================
+	Docker Swarm is an orchestration management tool that runs on Docker applications.
+It helps end-users in creating and deploying a cluster of Docker nodes.
+	Each node of a Docker Swarm is a Docker daemon, and all Docker daemons interact using the Docker API.
+
+===========================================================================
+Setup of Docker Swarm
+============================
+1 Create 3 AWS ubuntu instances
+2 Name them as Manager,Worker1,Worker2
+3 Install docker on all of them
+4 Change the hostname
+  vim /etc/hostname
+  Delete the content and replace it with Manager or Worker1 or Worker2
+5 Restart
+  init 6
+6 To initilise the docker swarm
+  Connect to Manager AWS instance
+  docker swarm init
+  This command will create a docker swarm and it will also generate
+  a tokenid
+7 Copy and paste the token id in Worker1 and Worker2
+
+===========================================================================
+TCP port 2376 for secure Docker client communication. This port is required for Docker Machine to work. Docker Machine is used to orchestrate Docker hosts.
+
+TCP port 2377. This port is used for communication between the nodes of a Docker Swarm or cluster. It only needs to be opened on manager nodes.
+
+TCP and UDP port 7946 for communication among nodes (container network discovery).
+UDP port 4789 for overlay network traffic (container ingress networking).
+
+
+=========================================================================
+Load Balancing:
+---------------
+	Each docker containers has a capability to sustain a specific
+user load.To increase this capability we can increase the number of replicas(containers) on which a service can run
+
+UseCase
+------------
+Create nginx with 5 replicas and check where these replicas are
+running
+
+1 Create nginx with 5 replicas
+  docker service create --name webserver -p 8888:80 --replicas 5 nginx
+
+2 To check the services running in swarm
+  docker service ls
+
+3 To check where these replicas are running
+  docker service ps webserver
+
+4 To access the nginx from browser
+  public_ip_of_manager/worker1/worker2:8888
+
+5 To delete the service with all replicas
+  docker service rm webserver
+=========================================================================
+UseCase
+===========
+Create mysql with 3 replicas and also pass the necessary environment
+variables
+
+1 docker service create 
+  --name db --replicas 3 -e MYSQL_ROOT_PASSWORD=intelliqit  mysql:5
+
+2 To check if 3 replicas of mysql are running
+  docker service ps db
+
+===========================================================================
+Scalling
+============
+	This is the process of increasing the number of replicas or decreasing
+the replicas count based on requirement without the end user experiencing
+any down time.
+
+UseCase
+============
+Create tomcat with 4 replicas and scale it to 8 and scale it
+down to 2 
+
+1 Create tomcat with 4 replicas
+  docker service create --name appserver -p 9090:8080 --replicas 4 tomcat
+
+2 Check if 4 replicas are running
+  docker service ps appserver
+
+3 Increase the replicas count to 8
+  docker service scale appserver=8
+
+4 Check if 8 replicas are running
+  docker service ps appserver
+
+5 Decrese the replicas count to 2
+  docker service scale appserver=2
+
+6 Check if 2 replicas are running
+  docker service ps appserver
+
+
+========================================================================================
+Rolling updates
+======================
+Services running in docker swarm should be updated from once
+version to other without the end user downtime
+
+UseCase
+===========
+Create redis:3 with 5 replicas and later update it to redis:4
+also rollback to redis:3
+
+1 Create redis:3 with 5 replicas
+  docker service create --name myredis --replicas 5 redis:3
+
+2 Check if all 5 replicas of redis:3 are running
+  docker service ps myredis
+
+3 Perfrom a rolling update from redis:3 to redis:4
+  docker service update --image redis:4 myredis
+
+4 Check redis:3 replcias are shut down and in tis palce redis:4 replicas are running
+  docker service ps myredis
+
+5 Roll back from redis:4 to redis:3
+  docker service update --rollback myredis
+
+6 Check if redis:4 replicas are shut down and in its place redis:3 is running
+  docker service ps myredis
+
+================================================================================
+1 To remove a worker from swarm cluster
+  docker node update --availability drain Worker1
+
+2 To make this worker rejoin the swarm
+  docker node update --availability active Worker1
+
+3 To make worker2 leave the swarm Connect to worker2 usig git bash 
+  docker swarm leave
+
+4 To make manager leave the swarm
+  docker swarm leave --force
+
+5 To generate the tokenid for a machine to join swarm as worker
+  docker swarm join-token worker
+
+6 To generate the tokenid for a machine to join swarm as manager
+  docker swarm join-token manager
+
+7 To promote Worker1 as a manager
+  docker node promote Worker1
+
+8 To demote Worker1 back to a worker status
+  docker node demote Worker1
+
+=============================================================================
+FailOver Scenarios of Workers
+================================
+Create httpd with 6 replicas and delete one replica running on the manager
+Check if all 6 replicas are still running
+
+Drain Worker1 from the docker swarm and check if all 6 replicas are running
+on Manager and Worker2,make Worker1 rejoin the swarm
+
+Make Worker2 leave the swarm and check if all the 6 replicas are
+running on Manager and Worker1
+
+1 Create httpd with 6 replicas
+  docker service create  --name webserver -p 9090:80 --replicas 6 httpd
+
+2 Check the replicas running on Manager
+  docker service ps webserver | grep Manager
+
+3 Check the container id
+  docker container ls
+
+4 Delete a replica
+  docker rm -f container_id_from_step3
+
+5 Check if all 6 replicas are running
+  docker service ps webserver
+
+6 Drain Worker1 from the swarm
+  docker node update --availability drain Worker1
+
+7 Check if all 6 replicas are still running on Manager and Worker2
+  docker service ps webserver
+
+8 Make Worker1 rejoin the swarm
+  docker node update --availability active Worker1
+
+9 Make Worker2 leave the swarm
+  Connect to Worker2 using git bash
+  docker swarm leave
+  Connect to Manager
+  
+10 Check if all 6 replicas are still running
+   docker service ps webserver
+
+======================================================================
+FailOver Scenarios of Managers
+====================================
+If a worker instance crashses all the replicas running on that
+worker will be moved to the Manager or the other workers.
+If the Manager itself crashes the swarm becomes headless 
+ie we cannot perfrom container orchestration activites in this
+swamr cluster
+
+To avoid this we should maintain multiple managers
+Manager nodes have the status as Leader or Reachable
+
+If one manager node goes down other manager becomes the Leader
+Quorum is resonsible for doing this activity and if uses a RAFT
+algorithm for handling the failovers of managers.Quorum also 
+is responsible for mainting the min number of manager
+
+Min count of manager required for docker swarm should be always
+more than half of the total count of Managers
+
+Total Manager Count  -    Min Manager Required - Fault Tolerance
+      1              -           1             -    0
+      2              -           2             -    0
+      3              -           2             -    1
+      4              -           3             -    1
+      5              -           3             -    2
+      6              -           4             -    2
+      7              -           4             -    3
+      8              -           5             -    3
+
+===========================================================================
+Overlay Networking
+==================
+This is the deafult network used by swarm
+and this network perfrom network load balancin
+ie even if a service is running on a specicfic  worker we can
+access if from orther slave
+
+UseCase
+=============
+Start nginx with 2 repliacs and check if we can acces it from 
+browser from manager and all workers
+
+1 Create nginx
+  docker service create  --name webserver -p 8888:80 --replicas 2 nginx
+
+2 Check where these 2 replcas are running
+  docker service ps webserver
+  These repliacs will be running on only 2 nodes and we will have a third
+  node where it it not running
+
+3 Check if we can access nginx from the third node where it is not present
+  public_ip_of_thirdnode:8888
+
+============================================================================
+UseCase
+===========
+Create 2 overlay networks intelliqit1 and intelliqit2
+Create httpd with 5 replacs on intelliqit1 network
+Create tomcat with 5 replicas on default overlay ingres network
+and later perform rolling network update to intelliqit2 network
+
+1 Create 2 overlay networks
+  docker network create  --driver overlay intelliqit1
+  docker network create  --driver overlay intelliqit2
+
+2 Check if 2 overlay networks are created
+  docker network ls
+
+3 Create httpd with 5 replcias on inteliiqit1 network
+  docker service create  --name webserver -p 8888:80 --replicas 5 
+                                           --network intelliqit1 httpd
+
+4 To check if httpd is running on intelliqit1 network
+  docker service inspect webserver
+  This command will generate the output in JSON format
+  To see the above output in normal text fromat
+  docker service inspect webserver --pretty
+
+5 Create tomcat with 5 replicas on the deafult ingres network
+  docker service create --name appserver -p 9999:8080 --replicas 5 tomcat
+
+6 Perform a rolling network update from ingres to intelliqit2 network
+  docker service update --network-add intelliqit2 appserver
+
+7 Check if tomcat is now running on intelliqit2 network
+  docker service inspect appserver --pretty
+
+Note: To remove from intelliqit2 network
+      docker service update --network-rm intelliqit2 appserver
+
+===============================================================================
+Docker Stack
+=====================
+docker compose + docker swarm = docker stack
+docker compose + kubernetes = kompose
+
+Docker compose when implemented at the level of docker swarm
+it is called docker stack.Using docker stack we can create an orchestreta
+a micro services architecture at the level of production servers
+
+1 To create a stack from a compose file
+  docker stack deploy -c compose_filename stack_name
+
+2 To see the list of stacks created
+  docker stack ls
+
+3 To see on which nodes the stack services are running
+  docker stack ps stack_name
+
+4 To delete a stack
+  docker stack rm stack_name
+
+=====================================================================
+UseCase
+================
+Create a docker stack file to start 3 replicas of wordpress
+and one replica of mysql
+
+vim stack1.yml
+--------------
+version: '3.8'
+
+services:
+ db:
+  image: mysql:5
+  environment:
+   MYSQL_ROOT_PASSWORD: intelliqit
+
+ wordpress:
+  image: wordpress
+  ports:
+   - 8989:80
+  deploy:
+   replicas: 3
+
+1 To start the stack file
+  docker stack deploy -c stack1.yml mywordpress
+
+2 To see the services running
+  docker service ls
+
+3 To check where the serives are running
+  docker stack ps mywordpress
+
+4 To delete the stack
+  docker stack rm mywordpress
+
+=====================================================================
+UseCase
+==============
+Create a stack file to setup CI-cd architecture where a jenkins
+container is linked with tomcats for qa and prod environments
+The jenkins contianers should run only on Manager
+the qaserver tomcat should run only on Worker1 and prodserver
+tomcat should run only on worker2
+
+vim stack2.yml
+---
+version: '3.8'
+
+services:
+ myjenkins:
+  image: jenkins/jenkins
+  ports:
+   - 5050:8080
+  deploy:
+   replicas: 2
+   placement:
+    constraints:
+     - node.hostname == Manager
+
+ qaserver:
+  image: tomcat
+  ports:
+   - 6060:8080
+  deploy:
+   replicas: 3
+   placement:
+    constraints:
+     - node.hostname == Worker1
+
+ prodserver:
+  image: tomcat
+  ports:
+   - 7070:8080
+  deploy:
+   replicas: 4
+   placement:
+    constraints:
+     - node.hostname == Worker2
+...
+
+1 To start the services 
+  docker deploy -c stack2.yml ci-cd
+
+2 To check the replicas 
+  docker stack ps ci-cd
+
+===========================================================================
+UseCase
+Create a stack file to setup the selenium hub and nodes architecture
+but also specify a upper limit on the h/w
+
+vim stack3.yml
+------------------------
+version: '3.8'
+
+services:
+ hub:
+  image: selenium/hub
+  ports:
+   - 4444:4444
+  deploy:
+   replicas: 2
+   resources:
+    limits:
+     cpus: 0.1
+     memory: 300M
+
+ chrome:
+  image: selenium/node-chrome-debug
+  ports:
+   - 5901:5900
+  deploy:
+   replicas: 3
+   resources:
+    limits:
+     cpus: 0.01
+     memory: 100M
+
+ firefox:
+  image: selenium/node-firefox-debug
+  ports:
+   - 5902:5900
+  deploy:
+   replicas: 3
+   resources:
+    limits:
+     cpus: 0.01
+     memory: 100M
+
+===========================================================================
+Docker secrets
+==============
+This is a feature of docker swarm using which we can pass secret data
+to the services running in swarm cluster
+These secrets are created on the host machine and they will be
+availbale from all the replicas in the swarm cluster
+
+1 Create a dcoker secret
+  echo  Hello Intelliqit | docker secret create mysecret -
+
+2 Create a redis db with 5 replace and mount the secret
+  docker service create --name myredis --replicas 5 --secret mysecret redis
+
+3 Capture one of the replica contianer id
+  docker container ls
+
+4 Check if the secret data is available
+  docker exec -it container_id cat /run/secrets/mysecret
+
+
+===========================================================================
+			Kubernetes Command
+===========================================================================
+What is Kubernetes?
+-------------------
+	Kubernetes is an open source container orchestration engine for automating deployment, scaling and management of containerized applications.
+	The open source project is hosted by the Cloud Native Computing Fountation (CNCF).
+	It has a large, rapidly growing ecosystem.Kubernetes services, support, and tools are widely available.
+
+Kubernetes Setup on AWS using Kops
+----------------------------------
+1. Launch Linux EC2 instance in AWS (Kubernetes Client)
+
+2. Create and attach IAM role to EC2 Instance.
+Kops need permissions to access
+	S3
+	EC2
+	VPC
+	Route53
+	Autoscaling
+	etc..
+3. Install Kops on EC2
+	$ curl -LO https://github.com/kubernetes/kops/releases/download/$(curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d '' -f 4)/kops-linux-amd64
+	$ chmod +x kops-linux-amd64
+	$ sudo mv kops-linux-amd64 /usr/local/bin/kops
+
+4. Install kubectl
+	$ curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+	$ chmod +x ./kubectl
+	$ sudo mv ./kubectl /usr/local/bin/kubectl
+
+5. Create S3 bucket in AWS
+S3 bucket is used by kubernetes to persist cluster state, lets create s3 bucket using aws cli Note: Make sure you choose bucket name that is uniqe accross all aws accounts
+	$ aws s3 mb s3://project.in.k8s --region us-west-2
+
+6. Create private hosted zone in AWS Route53
+Head over to aws Route53 and create hostedzone
+Choose name for example (sai.in)
+Choose type as privated hosted zone for VPC
+Select default vpc in the region you are setting up your cluster
+Hit create
+
+7 Configure environment variables.
+Open .bashrc file
+	$ vi ~/.bashrc
+Add following content into .bashrc, you can choose any arbitary name for cluster and make sure buck name matches the one you created in previous step.
+export KOPS_CLUSTER_NAME=project.in
+export KOPS_STATE_STORE=s3://project.in.k8s
+
+Then running command to reflect variables added to .bashrc
+	$ source ~/.bashrc
+
+8. Create ssh key pair
+This keypair is used for ssh into kubernetes cluster
+	$ ssh-keygen
+
+9. Create a Kubernetes cluster definition.
+kops create cluster \
+--state=${KOPS_STATE_STORE} \
+--node-count=2 \
+--master-size=t3.medium \
+--node-size=t3.medium \
+--zones=us-west-2a \
+--name=${KOPS_CLUSTER_NAME} \
+--dns private \
+--master-count 1
+
+10. Create kubernetes cluster
+kops update cluster --yes --admin
+Above command may take some time to create the required infrastructure resources on AWS. Execute the validate command to check its status and wait until the cluster becomes ready
+	$ kops validate cluster
+
+For the above above command, you might see validation failed error initially when you create cluster and it is expected behaviour, you have to wait for some more time and check again.
+
+11. To connect to the master
+	$ ssh admin@api.javahome.in
+
+12. Destroy the kubernetes cluster
+	$ kops delete cluster  --yes
+
+Update Nodes and Master in the cluster
+We can change numner of nodes and number of masters using following commands
+	$ kops edit ig nodes change minSize and maxSize to 0
+	$ kops get ig- to get master node name
+	$ kops edit ig - change min and max size to 0
+	$ kops update cluster --yes
+
+===========================================================================
+Kubernetes setup using Kubeadm
+===========================================================================
+Install, start and enable docker service
+
+	$ yum install -y -q yum-utils device-mapper-persistent-data lvm2 > /dev/null 2>&1
+	$ yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo > /dev/null 2>&1
+	$ yum install -y -q docker-ce >/dev/null 2>&1
+
+	$ systemctl start docker
+	$ systemctl enable docker
+
+===========================================================================
+Disable SELINUX
+---------------
+	$ setenforce 0
+	$ sed -i --follow-symlinks 's/^SELINUX=enforcing/SELINUX=disabled/' /etc/sysconfig/selinux
+
+===========================================================================
+Disable SWAP
+------------
+sed -i '/swap/d' /etc/fstab
+	$ swapoff -a
+
+===========================================================================
+Update sysctl settings for Kubernetes networking
+------------------------------------------------
+	$ cat >>/etc/sysctl.d/kubernetes.conf<<EOF   
+	  net.bridge.bridge-nf-call-ip6tables = 1
+	  net.bridge.bridge-nf-call-iptables = 1
+	  EOF
+
+	$ sysctl --system
+
+===========================================================================
+Add Kubernetes to yum repository
+
+cat >>/etc/yum.repos.d/kubernetes.repo<<EOF
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg
+        https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+EOF
+
+===========================================================================
+Install Kubernetes
+	$ yum install -y kubeadm-1.19.1 kubelet-1.19.1 kubectl-1.19.1
+
+===========================================================================
+Enable and start Kubernetes service
+
+	$ systemctl start kubelet
+	$ systemctl enable kubelet
+
+===========================================================================
+Repeat the above steps on Master and slaves
+===========================================================================
+On Master
+---------
+1 Initilise the Kubernetes cluster
+	$ kubeadm init --apiserver-advertise-address=ip_of_master  --pod-network-cidr=192.168.0.0/16
+
+To be able to use kubectl command to connect and interact with the cluster, the user needs kube config file.
+To start using your cluster, you need to run the following as a regular user:
+	$ mkdir /home/ec2-user/.kube
+	$ cp /etc/kubernetes/admin.conf /home/ec2-user/.kube/config
+	$ chown -R ec2-user:ec2-user /home/ec2-user/.kube
+	
+Alternatively, if you are the root user, you can run:
+  export KUBECONFIG=/etc/kubernetes/admin.conf
+  
+===========================================================================
+1 Deploy calico network
+------------------------
+	$ kubectl apply -f https://docs.projectcalico.org/v3.9/manifests/calico.yaml
+
+===========================================================================
+1 For slaves to join the cluster
+--------------------------------
+  	$ kubeadm token create --print-join-command
+
+Syntax:
+-------
+	$ kubectl [options]
+
+options:
+--------
+  	get pods -n kube-system	: 	Check the pods of kube-system  are running.
+	get nodes		:	To see the list of nodes in the Kubernetes cluster
+	get nodes -o wide	:	To get info about the nodes along with ipaddress and docker version etc
+	describe nodes node_name:	To get detailed info about the pods
+	run --image nginx webserver:	Create nginx as a pod and name it webserver
+	get pods		:	To see the list of pods
+	get pods -o wide	:	To get  info about the pods along with ipaddress
+	describe pod webserver :	To get detailed info about the pods
+	run --image mysql:5 db --env MYSQL_ROOT_PASSWORD=intelliqit : 	Create a mysql pod and also pass the necessary environment variables
+	get pods		:	Check if the pod is running
+	delete pod db		:	To delete the mysql pod
+	create -f mypod.yaml	:	creates a resource (like a pod, service, deployment, etc.) using the configuration defined in a YAML file.
+	apply -f mypod.yaml	:	applies changes to a resource defined in a YAML file.
+	exec -it mypod -- /bin/bash : 	allows you to execute a command inside a running pod.
+	logs mypod 		:	displays the logs of a specific pod.
+	get services		:	lists all the services in the current namespace.
+	scale deployment my-deployment --replicas=3 : 	scales the number of replicas for a deployment.
+	rollout restart deployment my-deployment : 	restarts a deployment by rolling out new updates.
+	
+Example:
+--------
+	$ kubectl get pods -n kube-system
+	$ kubectl get nodes
+	$ kubectl get nodes -o wide
+	$ kubectl describe nodes node_name
+	$ kubectl run --image nginx webserver
+	$ kubectl get pods
+	$ kubectl get pods -o wide
+	$ kubeclt describe pod webserver
+	$ kubectl run --image mysql:5 db --env MYSQL_ROOT_PASSWORD=intelliqit
+	$ kubectl get pods
+	$ kubectl delete pod db
+	$ kubectl create -f mypod.yaml
+	$ kubectl apply -f mypod.yaml
+	$ kubectl exec -it mypod -- /bin/bash
+	$ kubectl logs mypod
+	$ kubectl get services
+	$ kubectl scale deployment my-deployment --replicas=3
+	$ kubectl rollout restart deployment my-deployment
+
+===========================================================================
+			Kubernetes Advance Command
+===========================================================================
+Cluster Information and Status:
+===============================
+Syntax:
+-------
+	$ kubectl [options]
+
+options:
+--------
+  	cluster-info	: 	View Kubernetes cluster information
+	get nodes	:	View nodes in the cluster
+	get all -n <namespace> : 	View all resources in a namespace
+	kubectl describe <resource_type> <resource_name> : 	Describe a specific resource
+	logs <pod_name> :	View pod logs
+	
+Example:
+--------
+	$ kubectl cluster-info
+	$ kubectl get nodes
+	$ kubectl get all -n <namespace>
+	$ kubectl describe <resource_type> <resource_name>
+	$ kubectl logs <pod_name>
+	
+Deployments and Pods:
+=====================
+Syntax:
+-------
+	$ kubectl [options]
+
+options:
+--------
+  	create deployment <deployment_name> --image=<image_name>	: 	Create a deployment
+	scale deployment <deployment_name> --replicas=<replica_count>	:	ToScale a deployment
+	rollout restart deployment <deployment_name> 		: 	Rolling restart of a deployment
+	expose deployment <deployment_name> --port=<port> 	: 	Exposing a deployment as a service
+	exec -it <pod_name> -- <command> 			: 	Run a one-time command in a pod
+	
+	
+Example:
+--------
+	$ kubectl create deployment <deployment_name> --image=<image_name>
+	$ kubectl scale deployment <deployment_name> --replicas=<replica_count>
+	$ kubectl rollout restart deployment <deployment_name>
+	$ kubectl expose deployment <deployment_name> --port=<port>
+	$ kubectl exec -it <pod_name> -- <command>
+
+Services:
+=========
+Syntax:
+-------
+	$ kubectl [options]
+
+options:
+--------
+  	create service <service_type> <service_name> --tcp=<port>:<target_port>	:	Create a service
+	expose deployment <deployment_name> --type=<service_type> --port=<port>	:	Expose a deployment using a service
+	describe service <service_name> 					:	Describe a service
+	delete service <service_name>						: 	Delete a service
+	
+Example:
+--------
+	$ kubectl create service <service_type> <service_name> --
+tcp=<port>:<target_port>
+	$ kubectl expose deployment <deployment_name> --type=<service_type> --port=<port>
+	$ kubectl describe service <service_name>
+	$ kubectl delete service <service_name>
+
+Configurations:
+===============
+Syntax:
+-------
+	$ kubectl [options]
+
+options:
+--------
+  	get configmap <configmap_name>		:	View ConfigMap details	
+	create configmap <configmap_name> --from-file=<path/to/files> : 	Create a ConfigMap from file
+	get secret <secret_name> 		:  	View Secret details
+	create secret generic <secret_name> --from-literal=key1=value1 --from-literal=key2=value2 : 	Create a Secret from literal values
+	
+Example:
+--------
+	$ kubectl get configmap <configmap_name>
+	$ kubectl create configmap <configmap_name> --from-file=<path/to/files>
+	$ kubectl get secret <secret_name>
+	$ kubectl create secret generic <secret_name> --from-literal=key1=value1 --from-literal=key2=value2
+
+Networking:
+===========
+Syntax:
+-------
+	$ kubectl [options]
+
+options:
+--------
+  	get pods -n kube-system	:	
+	
+Example:
+--------
+	$ Syntax:
+-------
+	$ kubectl [options]
+
+options:
+--------
+	get svc 		: 	Get information about services and their endpoints
+	apply -f ingress.yaml	: 	Create an Ingress resource
+	get ingress		:	View Ingress details
+	get networkpolicies	: 	Network policy details
+	apply -f network-policy.yaml : 	Enable or disable resource access for a pod
+	
+Example:
+--------
+	$ kubectl get svc
+	$ kubectl apply -f ingress.yaml
+	$ kubectl get ingress
+	$ kubectl get networkpolicies
+	$ kubectl apply -f network-policy.yaml
+	
+Storage:
+========
+Syntax:
+-------
+	$ kubectl [options]
+
+options:
+--------
+  	get pv		:	View Persistent Volumes (PVs)
+  	get pvc 	:	View Persistent Volume Claims (PVCs)
+  	apply -f persistent-volume-claim.yamlScaling : 	Create a Persistent Volume Claim
+	
+Example:
+--------
+	$ kubectl get pv
+	$ kubectl get pvc
+	$ kubectl apply -f persistent-volume-claim.yamlScaling
+	
+Autoscaling:
+============
+Syntax:
+-------
+	$ kubectl [options]
+
+options:
+--------
+  	autoscale deployment <deployment_name> --min=<min_replicas> --max=<max_replicas> --cpu-percent=<cpu_percent> :	Autoscale a deployment
+  	get hpa 	: 	View horizontal pod autoscaler details
+	scale deployment <deployment_name> --replicas=<new_replica_count> : 	Manually trigger horizontal pod autoscaler
+	
+Example:
+--------
+	$ kubectl autoscale deployment <deployment_name> --min=<min_replicas> --max=<max_replicas> --cpu-percent=<cpu_percent>
+	$ kubectl get hpa
+	$ kubectl scale deployment <deployment_name> --replicas=<new_replica_count>
+
+StatefulSets:
+=============
+Syntax:
+-------
+	$ kubectl [options]
+
+options:
+--------
+  	apply -f statefulset.yaml		:	Create a StatefulSet
+	scale statefulset <statefulset_name> --replicas=<replica_count> : 	Scale a StatefulSet
+	delete statefulset <statefulset_name> 	: 	Delete a StatefulSet and associated pods	
+	
+Example:
+--------
+	$ kubectl apply -f statefulset.yaml
+	$ kubectl scale statefulset <statefulset_name> --replicas=<replica_count>
+	$ kubectl delete statefulset <statefulset_name>
+
+Debugging and Troubleshooting:
+==============================
+Syntax:
+-------
+	$ kubectl [options]
+
+options:
+--------
+  	debug <pod_name> -it --image=<debug_image>	:	Run a debug container in a pod
+  	get events	: Get events in the cluster
+  	top pod		: Check pod resource usage
+	
+Example:
+--------
+	$ kubectl debug <pod_name> -it --image=<debug_image>
+	$ kubectl get events
+	$ kubectl top pod
+
+Security:
+=========
+Syntax:
+-------
+	$ kubectl [options]
+
+options:
+--------
+  	get psp		:	View pod security policies
+  	get pods --output=jsonpath='{range.items[*]}{"\n"}{.metadata.name}{":"}{.spec.securityContext.runAsUser}{end}' : View pod security context
+	create serviceaccount <serviceaccount_name> : 	Create a service account
+	
+Example:
+--------
+	$ kubectl get psp
+	$ kubectl get pods --output=jsonpath='{range.items[*]}{"\n"}{.metadata.name}{":"}{.spec.securityContext.runAsUser}{end}'
+	$ kubectl create serviceaccount <serviceaccount_name>
+
+Namespaces:
+===========
+Syntax:
+-------
+	$ kubectl [options]
+
+options:
+--------
+  	get namespaces			  :	List all namespaces
+  	config set-context --current --namespace=<namespace_name> : Switch to a different namespace
+  	create namespace <namespace_name> : 	Create a namespace
+	
+Example:
+--------
+	$ kubectl get namespaces
+	$ kubectl config set-context --current --namespace=<namespace_name>
+	$ kubectl create namespace <namespace_name>
+	
+Helm (Kubernetes Package Manager):
+==================================
+Syntax:
+-------
+	$ helm [options]
+
+options:
+--------
+  	install <release_name> <chart_name>	: 	Install a Helm chart
+  	list					: 	List Helm releases
+  	upgrade <release_name> <chart_name> 	: 	Upgrade a Helm release
+	
+Example:
+--------
+	$ helm install <release_name> <chart_name>
+	$ helm list
+	$ helm upgrade <release_name> <chart_name>
+	
+Monitoring and Logging:
+=======================
+Syntax:
+-------
+	$ kubectl [options]
+
+options:
+--------
+  	logs <pod_name> --timestamps	: View pod logs with timestamps
+  	apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml : Enable metrics server (for resource usage metrics)
+	top nodes 			: View resource usage metrics for nodes
+	top pods 			: View resource usage metrics for pods
+	
+Example:
+--------
+	$ kubectl logs <pod_name> --timestamps
+	$ kubectl apply -f https://github.com/kubernetes-sigs/metrics-
+server/releases/latest/download/components.yaml
+	$ kubectl top nodes
+	$ kubectl top pods
+
+Clean Up:
+=========
+Syntax:
+-------
+	$ kubectl [options]
+
+options:
+--------
+  	delete <resource_type> <resource_name>	:	Delete a resource
+  	delete all --all -n <namespace> 	: Delete all resources in a namespace
+	
+Example:
+--------
+	$ kubectl delete <resource_type> <resource_name>
+	$ kubectl delete all --all -n <namespace>
+	
+========================================================================
+Managed Kubernetes Setup
+1 EKS (AWS)
+2 GKE (GCP)
+
+===========================================================================
+Elastic Kubernetes Service
+===========================================================================
+1 Install Kubectl
+  https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html
+
+2 Install eksctl
+  https://docs.aws.amazon.com/eks/latest/userguide/eksctl.html
+
+3 Install AWS IAM authenticator plugin
+  https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html
+
+===========================================================================
+GKE (Google cloud)
+===========================================================================
+1 Login into GCP
+
+2 Click on Naviagtion menu--->Kubernetes cluster
+
+3 Click on Switch to standard cluster
+
+4 Click on Create cluster
+
+===========================================================================
+		      Ansible Command
+===========================================================================
+What is Ansible?
+----------------
+	Written in python , Ansible is an open-source automation tool for configuration management, application deployment, and task automation.
+
+What is Inventory?
+------------------
+	The inventory file (/etc/ansible/hosts) lists the hosts on which Ansible should run.
+
+what is hosts configure?
+------------------------
+	$ sudo nano /etc/ansible/hosts
+
+typescript
+----------
+[group_name]
+hostname ansible_ssh_host=your_remote_ip ansible_ssh_user=your_remote_user ansible_ssh_private_key_file=/path/to/your/private/key
+
+Replace group_name:	with a name for your group of servers.
+Replace hostname:	with a name for your remote machine.
+Replace your_remote_ip:		with the actual IP address of your remote machine.
+Replace your_remote_user:	 with the username you use to connect to the remote machine.
+Replace /path/to/your/private/key:	 with the path to your private SSH key.
+For Example, 
+[myslaves]
+localhost ansible_ssh_host=192.168.131.219 ansible_ssh_user=worker1 ansible_ssh_private_key_file=~/.ssh/id_rsa
+
+
+Run ad-hoc commands on the command line:
+----------------------------------------
+	$ ansible <group_name> -m <module_name> -a "<module_arguments>"
+
+What is Modules?
+----------------
+	Modules are units of work in Ansible. Common modules include yum, apt, copy, file, service, etc.
+
+What is Tags?
+-------------
+	Assign tags to tasks for selective execution.
+tasks:
+  - name: Your task here
+    command: /path/to/command
+    tags:
+      - tag_name
+
+What is Playbooks?
+------------------
+	Playbooks are YAML files that define a set of tasks to be executed on remote hosts.
+
+Example Playbook Structure:
+---------------------------
+- name: Example Playbook
+  hosts: <group_name>
+  tasks:
+    - name: Your task here
+      <module_name>:
+        <module_argument>: <value>
+          
+What is Running Playbooks?
+--------------------------
+	Run a playbook
+	$ ansible-playbook your_playbook.yml
+
+yum or apt
+inventory file -> /etc/ansible/hosts
+config file -> /etc/ansible/ansible.cfg
+
+pip
+inventory file ->slaves.txt
+config file -> wget ansible.cfg
+
+ansible all -i slaves.txt -a "uname -a"
+ansible all -i slaves.txt -a "uptime"
+ansible all -i slaves.txt -m yum -a "name=httpd state-present" -b
+ansible all -i slaves.txt
+
+-i --> inventery file
+-m --> module
+-a --> action
+-m copy -a --> argument
+-b --> become (root user)
+
+name
+----
+package_name i.e name=httpd
+
+states
+------
+install 	- present
+uninstall 	- absent
+start 		- started
+stop 		- stopped
+restart 	- restarted
+
+===========================================================================
+	        	Terraform command
+===========================================================================
+What is terraform?
+------------------
+	Terraform is an Infrastructure as Code tool that allows you to define and provision infrastructure using a declarative configuration language. It enables you to create, modify, and version infrastructure efficiently.
+
+Syntax:
+-------
+	$ terraform [options]
+
+options:
+--------
+  	init	: 	Initializes a Terraform working directory by downloading providers and modules.
+	plan	:	Generates an execution plan showing what actions Terraform will take to apply the configuration.
+	apply	:	Applies the changes required to reach the desired state of the configuration.
+	destroy	:	Destroys the infrastructure defined in your Terraform configuration.
+	validate:	Checks the syntax and validity of your Terraform configuration files.
+	fmt	:	Rewrites Terraform configuration files to a canonical format.
+	show	:	Outputs the current state or a saved plan.
+	state list:	Performs operations on Terraform state files.
+	import	:	Imports existing infrastructure into Terraform.
+	output	:	Reads an output variable from the Terraform state.
+	workspace:	Manages Terraform workspaces, allowing you to work with multiple sets of infrastructure configurations.
+
+Example:
+--------
+	$ terraform init
+	$ terraform plan
+	$ terraform apply
+	$ terraform destroy
+	$ terraform validate
+	$ terraform fmt
+	$ terraform show
+	$ terraform state list
+	$ terraform import aws_instance.example i-1234567890abcdef0
+	$ terraform output instance_ip  (assuming you have an output named instance_ip in your configuration)
+	$ terraform workspace new dev
+	$ terraform workspace select dev
+
+===========================================================================
+				Self intro
+===========================================================================
+		Good morning Sir/Madam,
+	It's my pleasure to introduce myself to you.
+		My name is ARUN R.
+	I am from Cuddalore, Tamil Nadu but commercial staying in Tin factory, Bengalore.
+I have done my graduation in B.E at the stream of Electrical and Electronics Enginerring from Government College of Engineering,Thanjavur.
+	I belong to a nuclear family. my family member 4 including me.
+    I completed AWS, Devops and Linux course in besant teachnology, Bengalore. 
+My short term goals is to get a job in a reputed Company and my long term goals is to achieve a higher position in the reputed company.
+	My strength is hardworking, quick learner, self-motivated and loyal to my work.
+Thank You! for giving me this oppertunity to share a bit about myself.
+	I welcome any additional questions you may have
+
+Interviewer ask! then only tell.
+================================
+What is playing role?
+---------------------
+	I am currently working as a network engineer at ebixcash mobility software india pvt ltd. I am working in client side Canara Bank.
+
+why switch off this job?
+------------------------ 
+	In my current work I learn all things which are there in my role and responsibilities I want explore more things and improve my skills.
+
+What is your expectation salary?
+--------------------------------
+	As per my research and based on market value for fresher the organization paying INR 3.5 to 4 LPA I am also expecting same.
+
