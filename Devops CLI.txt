@@ -51,8 +51,8 @@ $ sudo apt-get upgrade		Second, we need to upgrade our repository
 
 Syntax:
 -------
-	sudo apt-get [options] <software_name>
-	sudo apt-cache [options] <key_word>
+	$ sudo apt-get [options] <software_name>
+	$ sudo apt-cache [options] <key_word>
 	
 options:
 --------
@@ -74,7 +74,7 @@ additional Package management DPKG command
 ==========================================
 Syntax:
 -------
-	dpkg [options] <package_name.deb>
+	$ dpkg [options] <package_name.deb>
 
 options:
 --------
@@ -100,7 +100,7 @@ $ yum -y upgrade	Second, we need to upgrade our repository
 
 Syntax:
 -------
-	sudo yum [options] <software_name>
+	$ sudo yum [options] <software_name>
 
 options:
 --------
@@ -141,7 +141,7 @@ Service Management command
 ===========================================================================
 Syntax:
 -------
-	systemctl [options] <service_name>
+	$ systemctl [options] <service_name>
 
 options:
 --------
@@ -208,7 +208,7 @@ Hard and Symbolic link command
 
 Syntax:
 -------
-	ln [option] original_file.txt hard_link.txt or /path/to/target /path/to/symlink
+	$ ln [option] original_file.txt hard_link.txt or /path/to/target /path/to/symlink
 
 options:
 --------
@@ -228,7 +228,7 @@ File and Directory Permissions command
 
 Syntax:
 -------
-	chmod [option] <file/dir_name>
+	$ chmod [option] <file/dir_name>
 
 options:
 --------
