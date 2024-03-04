@@ -1,4 +1,4 @@
-03:19 PM 17-02-2024
+05:58 PM 23-02-2024
 ===========================================================================
 			Unix/Linux command
 ===========================================================================
@@ -263,7 +263,17 @@ d--x--x--x	myscript.sh	grants only execute permissions to the user,group,others 
 ===========================================================================
 Special Permissions SUID, SGID and Sticky bit command
 ===========================================================================
-	Special permissions refer to file and directory permissions that go beyond the standard read, write, and execute permissions for the owner, group, and others.
+	special permissions, also known as "special modes" or "setuid/setgid bits", are additional permissions that can be set on executable files or directories. These permissions allow for special behavior when executing or accessing these files or directories.
+
+First bit represents the special Bit
+------------------------------------
+4 – SUID
+2 – SGID
+1 – Sticky Bit
+
+SUID - Normally when a file executes it execute as logged user but if SUID flag is set it will run as a owner of the file.
+SGID - Similar like the SUID but for group instead of user.
+Sticky bit - Only the owner of a file within that directory (or the root user) can delete or rename the file, even if other users have write permissions to the directory.
 
 Syntax:
 -------
@@ -283,6 +293,8 @@ Example:
 	
 sets the default file permissions
 =================================
+	The umask, short for "user file creation mask," is a Linux/Unix command and a file system attribute that determines the default permissions of newly created files and directories. It acts as a set of permissions that are automatically removed from files and directories upon creation.
+
 Syntax:
 -------
 	$ umask [option] <file/dir_name>
@@ -342,7 +354,7 @@ changes the owner & group of file/directory at time
 ===================================================	
 Syntax:
 -------
-	$ chgrp	username:groupname <file/dir_name>
+	$ chmod	username:groupname <file/dir_name>
 
 options:
 --------
@@ -371,14 +383,15 @@ File compression & achieving command
 ===========================================================================
 Process management command
 ===========================================================================
-1 ps			To display the currently working processes
-2 top			To Display all running process
-3 kill <process_id>	To Kill the process with given processes id
-4 killall proc		To Kill all the process named proc
-5 pkill pattern	Will 	To kill all processes matching the pattern
-6 bg			To List stopped or background jobs,resume a stopped job in the background
-7 fg			To Brings the most recent job to foreground
-8 fg n			To Brings job n to the foreground		
+1 ps			To list currently running processes.
+2 ps aux		To list of all running processes including user ownership, CPU and memory usage, and command name.
+3 top			To Display dynamic, real-time informatin about running processes.
+4 kill <process_id>	To Kill the process with given processes id.
+5 killall proc		To Kill all the process named proc
+6 pkill pattern	Will 	To kill all processes matching the pattern
+7 bg			To List stopped or background jobs,resume a stopped job in the background
+8 fg			To Brings the most recent job to foreground
+9 fg n			To Brings job n to the foreground		
 
 ===========================================================================
 System Info command
@@ -422,21 +435,28 @@ Create, modify, and delete user accounts
 2 useradd -m <username>				To Create a user with home directories
 3 passwd <username>				To Setting the password for the user
 4 id <username>					To Get the ID of any username
-5 usermod -u <new_id> <username>		To Modify the user ID for a user
-6 usermod -g <new_group_id> <username>		To Modify the user ID for a user
-7 usermod -l <new_username> <old_username> 	To Modify the user login name
-8 usermod -d <new_home_dir_path> <username>	To Modify the home directory
-9 userdel -r <username>				To delete a user name
+5 sudo usermod -aG sudo <username>		To grant root permission to a user
+6 sudo usermod -aG wheel <username>		To add the user to a supplementary group, in this case, the "wheel" group.
+7 usermod -u <new_id> <username>		To Modify the user ID for a user
+8 usermod -l <new_username> <old_username> 	To Modify the user login name
+9 usermod -d <new_home_dir_path> <username>	To Modify the home directory
+10 userdel -r <username>			To delete a user name
+11 getent passwd or cat /etc/passwd		To list all user in linux system
 
 Create, modify, and delete groups
 ---------------------------------
 1 groupadd <group_name>				To Creating a secondary group
 2 gpasswd <group_name>				To Setting the password for the group
-3 groupmod -G <groupname> <username>		To Adding a user to an existing	group	
-4 groupmod -aG <groupname> <username>		To Add user to group without removing from existing group
-5 groupmod -M <username1> <username2>		To Add multiple users to a group at once
-6 gpasswd -d <username> <group_name>		To Deleting a user from a group
-7 groupdel <group_name>				To Delete a group
+3 groupmod -g <new_group_id> <username>		To Modify the user ID for a user
+4 usermod -G <group_name> <username>		To Adding a user to an existing	group	
+5 usermod -aG <group_name> <username>		To Add user to group without removing from existing group
+6 gpasswd -M <usrname1,usrname2> <grp_name>	To Add multiple users to a group at once
+7 gpasswd -d <username> <group_name>		To Deleting a user from a group
+8 gpasswd -d <usrname1,usrname2> <group_name>	To Deleting multiple user from a group at once
+9 groupdel <group_name>				To Delete a group
+10 getent group					To list all group in linux system
+11 getent group	<group_name>			To list all user in group
+12 getent group <group_name> | cut -d: -f4	To (cut) extract just the member list
 
 ===========================================================================
 cron command
@@ -642,7 +662,7 @@ Install NFS Server:
 	
 Create a Directory:
 -------------------
-	$ mkdir /srv/nfs_share
+	$ sudo mkdir /srv/nfs_share
 
 Config:
 -------
@@ -664,7 +684,7 @@ Install NFS Client:
 	
 Mount the Shared Directory:
 ---------------------------
-	$ udo mkdir /mnt/nfs_share
+	$ sudo mkdir /mnt/nfs_share
 	
 Now, mount the NFS share:
 -------------------------
@@ -681,7 +701,7 @@ Automounting:
 	
 Automounting the NFS share:
 ---------------------------
-	<NFS_SERVER_IP>:/srv/nfs_share /mnt/nfs_share nfs defaults 0 0
+	$ <NFS_SERVER_IP>:/srv/nfs_share /mnt/nfs_share nfs defaults 0 0
 Again,Notes replace <NFS_SERVER_IP> with your server’s IP address.
 
 ===========================================================================
@@ -2550,8 +2570,7 @@ UDP port 4789 for overlay network traffic (container ingress networking).
 =========================================================================
 Load Balancing:
 ---------------
-	Each docker containers has a capability to sustain a specific
-user load.To increase this capability we can increase the number of replicas(containers) on which a service can run
+	Each docker containers has a capability to sustain a specific user load.To increase this capability we can increase the number of replicas(containers) on which a service can run
 
 UseCase
 ------------
@@ -3126,7 +3145,7 @@ Repeat the above steps on Master and slaves
 ===========================================================================
 On Master
 ---------
-1 Initilise the Kubernetes cluster
+Initilise the Kubernetes cluster
 	$ kubeadm init --apiserver-advertise-address=ip_of_master  --pod-network-cidr=192.168.0.0/16
 
 To be able to use kubectl command to connect and interact with the cluster, the user needs kube config file.
@@ -3139,12 +3158,12 @@ Alternatively, if you are the root user, you can run:
   export KUBECONFIG=/etc/kubernetes/admin.conf
   
 ===========================================================================
-1 Deploy calico network
+Deploy calico network
 ------------------------
 	$ kubectl apply -f https://docs.projectcalico.org/v3.9/manifests/calico.yaml
 
 ===========================================================================
-1 For slaves to join the cluster
+For slaves to join the cluster
 --------------------------------
   	$ kubeadm token create --print-join-command
 
@@ -3647,7 +3666,7 @@ Example:
 ===========================================================================
 		Good morning Sir/Madam,
 	It's my pleasure to introduce myself to you.
-		My name is ARUN R.
+		I am ARUN R.
 	I am from Cuddalore, Tamil Nadu but commercial staying in Tin factory, Bengalore.
 I have done my graduation in B.E at the stream of Electrical and Electronics Enginerring from Government College of Engineering,Thanjavur.
 	I belong to a nuclear family. my family member 4 including me.
